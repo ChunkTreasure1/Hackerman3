@@ -5,7 +5,6 @@
 
 void Game::OnStart()
 {
-	myAbilityData.Init();
 }
 
 void Game::OnStop()

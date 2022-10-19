@@ -2,8 +2,6 @@
 
 #include "Core.h"
 
-#include "Game/Abilities/AbilityDescriptions.hpp"
-
 class VT_EXPORT Game
 {
 public:
@@ -12,6 +10,4 @@ public:
 	void OnUpdate();
 
 private:
-	AbilityData myAbilityData;
-
 };

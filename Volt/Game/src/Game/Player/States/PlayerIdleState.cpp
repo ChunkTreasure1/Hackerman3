@@ -12,11 +12,6 @@ PlayerIdleState::PlayerIdleState(const Volt::Entity& aEntity)
 
 void PlayerIdleState::OnEnter()
 {
-	auto& animComp = myEntity.GetComponent<Volt::AnimatedCharacterComponent>();
-
-	animComp.currentAnimation = 6;
-	animComp.currentStartTime = Volt::AnimationManager::globalClock;
-
 }
 
 void PlayerIdleState::OnUpdate(const float& deltaTime)

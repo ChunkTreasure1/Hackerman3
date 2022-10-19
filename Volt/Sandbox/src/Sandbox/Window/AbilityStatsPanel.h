@@ -3,7 +3,6 @@
 #include "Volt/Core/Base.h"
 #include "Sandbox/Window/EditorWindow.h"
 #include <vector>
-#include "Game/Abilities/AbilityDescriptions.hpp"
 
 class AbilityStatsPanel : public EditorWindow
 {
@@ -15,6 +14,4 @@ public:
 private:
 
 	std::vector<std::string> myAbilityNames;
-	eAbilityList mySelectedAbility;
-
 };

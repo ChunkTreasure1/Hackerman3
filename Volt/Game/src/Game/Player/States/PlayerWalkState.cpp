@@ -13,10 +13,6 @@ PlayerWalkState::PlayerWalkState(const Volt::Entity& aEntity)
 
 void PlayerWalkState::OnEnter()
 {
-	auto& animComp = myEntity.GetComponent<Volt::AnimatedCharacterComponent>();
-
-	animComp.currentAnimation = 7;
-	animComp.currentStartTime = Volt::AnimationManager::globalClock;
 }
 
 void PlayerWalkState::OnUpdate(const float& deltaTime)

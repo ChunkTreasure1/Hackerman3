@@ -3,13 +3,6 @@
 #include "PlayerSB.h"
 #include "States/PlayerIdleState.h"
 #include "States/PlayerWalkState.h"
-#include "States/PlayerPrimaryState.h"
-#include "States/PlayerArrowState.h"
-#include "States/PlayerSwipeState.h"
-#include "States/PlayerDashState.h"
-#include "States/PlayerFearState.h"
-#include "States/PlayerBloodLustState.h"
-#include "States/PlayerDeathState.h"
 
 class PlayerSM : public StateMachineBase<ePlayerState>
 {

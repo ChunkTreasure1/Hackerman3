@@ -6,12 +6,6 @@
 #include <Volt/Events/MouseEvent.h>
 #include <Volt/Events/GameEvent.h>
 #include "Volt/Events/KeyEvent.h"
-#include "Game/Abilities/Player/PlayerPrimaryAbility.h"
-#include "Game/Abilities/Player/PlayerArrowAbility.h"
-#include "Game/Abilities/Player/PlayerSwipeAbility.h"
-#include "Game/Abilities/Player/PlayerDashAbility.h"
-#include "Game/Abilities/Player/PlayerFearAbility.h"
-#include "Game/Abilities/Player/PlayerBloodlustAbility.h"
 
 enum UnlockableAbilities
 {
@@ -82,12 +76,4 @@ private:
 	bool myCancelAbility = true;
 
 	Volt::Entity myTargetedEntity;
-
-	PlayerPrimaryAbility myPrimaryAbility;
-	PlayerArrowAbility myArrowAbility;
-	
-	PlayerSwipeAbility mySwipeAbility;
-	PlayerDashAbility myDashAbility;
-	PlayerFearAbility myFearAbility;
-	PlayerBloodlustAbility myBloodlustAbility;
 };

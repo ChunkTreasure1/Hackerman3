@@ -63,9 +63,6 @@ namespace Volt
 		Physics::Initialize();
 		Physics::LoadLayers();
 
-		myAbilityData = CreateRef<AbilityData>();
-		myAbilityData->Init();
-
 		AUDIOENGINE.Init("Assets/Audio");
 		AUDIOENGINE.LoadMasterBank("Master.bank", "Master.strings.bank", 0);
 

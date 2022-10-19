@@ -9,8 +9,6 @@
 
 #include <string>
 
-#include "../../../Game/src/Game/Abilities/AbilityDescriptions.hpp" // this is very funky :)
-
 class AudioEngine;
 
 namespace Volt
@@ -76,8 +74,6 @@ namespace Volt
 		Scope<AssetManager> myAssetManager;
 		Scope<Window> myWindow;
 		Scope<ImGuiImplementation> myImGuiImplementation;
-
-		Ref<AbilityData> myAbilityData;
 	};
 
 	static Application* CreateApplication();

@@ -11,8 +11,6 @@
 #include <Volt/Utility/Random.h>
 #include <Volt/Events/KeyEvent.h>
 
-#include "Game/Player/HealthPickupSpawnerScript.h"
-
 DestructableObject::DestructableObject(Volt::Entity entity)
 	: Volt::ScriptBase(entity)
 {

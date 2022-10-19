@@ -16,24 +16,13 @@
 VT_REGISTER_SCRIPT(PlayerScript)
 
 PlayerScript::PlayerScript(const Volt::Entity& aEntity)
-	:ScriptBase(aEntity),
-	myPrimaryAbility(aEntity), myArrowAbility(aEntity),
-	mySwipeAbility(aEntity), myDashAbility(aEntity),
-	myFearAbility(aEntity), myBloodlustAbility(aEntity)
+	: ScriptBase(aEntity)
 {
 }
 
 void PlayerScript::OnAwake()
 {
-	
 	mySM = CreateRef<PlayerSM>(myEntity);
-
-	auto& animComp = myEntity.AddComponent<Volt::AnimatedCharacterComponent>();
-	animComp.animatedCharacter = Volt::AssetManager::Get().GetAssetHandleFromPath("Assets/Character/CHA_Player.vtchr");
-
-	animComp.currentAnimation = 6;
-	animComp.currentStartTime = Volt::AnimationManager::globalClock;
-
 	mySM->CreateStates();
 } 
 
@@ -166,7 +155,6 @@ void PlayerScript::Die()
 
 void PlayerScript::ActivateBloodlust()
 {
-	myBloodlustTimer = AbilityData::BloodLustData->buffTime;
 	myBloodlustActive = true;
 }
 
@@ -259,12 +247,6 @@ void PlayerScript::MoveTowardsTarget()
 
 void PlayerScript::UpdateAbilityCooldowns(float aDeltaTime)
 {
-	myPrimaryAbility.Update(aDeltaTime);
-	myArrowAbility.Update(aDeltaTime);
-	myFearAbility.Update(aDeltaTime);
-	myDashAbility.Update(aDeltaTime);
-	mySwipeAbility.Update(aDeltaTime);
-	myBloodlustAbility.Update(aDeltaTime);
 }
 
 gem::vec3 PlayerScript::GetWorldPosFromMouse()
@@ -315,26 +297,6 @@ bool PlayerScript::CheckMouseInput(Volt::MouseButtonPressedEvent& e)
 {
 	if (!Volt::Application::Get().IsRuntime() && !e.overViewport) { return false; }
 
-	if (mySM->GetActiveState() == ePlayerState::WALK || mySM->GetActiveState() == ePlayerState::IDLE)
-	{
-		if (e.GetMouseButton() == VT_MOUSE_BUTTON_LEFT && Volt::Input::IsKeyDown(VT_KEY_LEFT_SHIFT) && myPrimaryAbility.IsCastable())
-		{
-			myPrimaryAbility.SetDir(GetWorldPosFromMouse());
-			myPrimaryAbility.CastAfterTime(0.3f);
-			mySM->SetState(ePlayerState::PRIMARY);
-			CanCancelAbility(false);
-			return false;
-		}
-		else if (e.GetMouseButton() == VT_MOUSE_BUTTON_RIGHT && myArrowAbility.IsCastable())
-		{
-			myArrowAbility.SetDir(GetWorldPosFromMouse());
-			myArrowAbility.CastAfterTime(0.2f);
-			mySM->SetState(ePlayerState::ARROW);
-			CanCancelAbility(false);
-			return false;
-		}
-	}
-
 	if (e.GetMouseButton() == VT_MOUSE_BUTTON_LEFT && !Volt::Input::IsKeyDown(VT_KEY_LEFT_SHIFT) && myCancelAbility == true)
 	{
 		if (TryRaycastTarget())
@@ -355,27 +317,6 @@ bool PlayerScript::CheckMouseInput(Volt::MouseButtonPressedEvent& e)
 
 void PlayerScript::GiveAbility(UnlockableAbilities aAbility)
 {
-	switch (aAbility)
-	{
-	case Swipe:
-		mySwipeAbility.SetUnlocked(true);
-		break;
-	case Dash:
-		myDashAbility.SetUnlocked(true);
-		break;
-	case Fear:
-		myFearAbility.SetUnlocked(true);
-		break;
-	case BloodLust:
-		myBloodlustAbility.SetUnlocked(true);
-		break;
-	case BuffedArrow:
-		myEntity.GetComponent<Volt::PlayerComponent>().isBuffed = true;
-		break;
-	default:
-		VT_CORE_INFO("Eyo wtf?");
-		break;
-	}
 }
 
 void PlayerScript::SetRespawnPosition(gem::vec3 aRespawnPos)
@@ -405,80 +346,6 @@ void PlayerScript::CheckKeyInput(Volt::KeyPressedEvent& e)
 
 		if (e.GetKeyCode() == VT_KEY_U)
 		{
-			mySwipeAbility.SetUnlocked(true);
-			myDashAbility.SetUnlocked(true);
-			myFearAbility.SetUnlocked(true);
-			myBloodlustAbility.SetUnlocked(true);
-		}
-	}
-
-	if (mySM->GetActiveState() == ePlayerState::IDLE || mySM->GetActiveState() == ePlayerState::WALK)
-	{
-		auto& playerComp = myEntity.GetComponent<Volt::PlayerComponent>();
-		switch (e.GetKeyCode())
-		{
-		case VT_KEY_A:
-		case VT_KEY_1:
-			VT_CORE_INFO("Key 1");
-			if (mySwipeAbility.IsCastable() && mySwipeAbility.isUnlocked() && playerComp.currentFury >= AbilityData::SwipeData->cost)
-			{
-				CanCancelAbility(false);
-				mySwipeAbility.SetDir(GetWorldPosFromMouse());
-				mySwipeAbility.CastAfterTime(0.5f);
-
-				if (mySM->GetActiveState() == ePlayerState::WALK)
-				{
-					mySwipeAbility.InitVFXAfterTime(myEntity.GetPosition(), {0, myEntity.GetRotation().y, 0}, { 1,1,1 }, true, 0.4f, 0.5f, "Assets/Prefabs/Swipe.vtprefab");
-					mySM->GetPlayerState<PlayerSwipeState>(ePlayerState::SWIPE)->PlayerIsMoving(true);
-				}
-				else
-				{
-					mySwipeAbility.InitVFXAfterTime(myEntity.GetPosition(), myEntity.GetRotation(), { 1,1,1 }, false, 0.4f, 0.5f, "Assets/Prefabs/Swipe.vtprefab");
-					mySM->GetPlayerState<PlayerSwipeState>(ePlayerState::SWIPE)->PlayerIsMoving(false);
-				}
-				mySM->SetState(ePlayerState::SWIPE);
-				
-				playerComp.currentFury -= AbilityData::SwipeData->cost;
-			}
-			break;
-		case VT_KEY_S:
-		case VT_KEY_2:
-			VT_CORE_INFO("Key 2");
-			if (myDashAbility.IsCastable() && myDashAbility.isUnlocked() && playerComp.currentFury >= AbilityData::DashData->cost)
-			{
-				CanCancelAbility(false);
-				myDashAbility.SetDir(GetWorldPosFromMouse());
-				myDashAbility.CastAfterTime(0.2f);
-				mySM->SetState(ePlayerState::DASH);
-				playerComp.currentFury -= AbilityData::DashData->cost;
-			}
-			break;
-		case VT_KEY_D:
-		case VT_KEY_3:
-			VT_CORE_INFO("Key 3");
-			if (myFearAbility.IsCastable() && myFearAbility.isUnlocked() && playerComp.currentFury >= AbilityData::FearData->cost)
-			{
-				CanCancelAbility(false);
-				myFearAbility.CastAfterTime(0.8f);
-				myFearAbility.InitVFXAfterTime(myEntity.GetPosition(), myEntity.GetRotation(), { 1,1,1 }, false, 0.8f, AbilityData::FearData->fearTime, "Assets/Prefabs/Fear.vtprefab");
-				mySM->SetState(ePlayerState::FEAR);
-				playerComp.currentFury -= AbilityData::FearData->cost;
-			}
-			break;
-		case VT_KEY_F:
-		case VT_KEY_4:
-			VT_CORE_INFO("Key 4");
-			if (myBloodlustAbility.IsCastable() && myBloodlustAbility.isUnlocked() && playerComp.currentFury >= AbilityData::BloodLustData->cost)
-			{
-				CanCancelAbility(false);
-				myBloodlustAbility.Cast();
-				myBloodlustAbility.InitVFX(myEntity.GetPosition(), myEntity.GetRotation(), { 1,1,1 }, false, 0.5f, "Assets/Prefabs/Bloodlust.vtprefab");
-				mySM->SetState(ePlayerState::BLOODLUST);
-				playerComp.currentFury -= AbilityData::BloodLustData->cost;
-			}
-			break;
-		default:
-			break;
 		}
 	}
 }
