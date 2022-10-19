@@ -1,0 +1,36 @@
+cbuffer CameraBuffer : register(b0)
+{
+	CameraData u_cameraData;
+}
+
+cbuffer ObjectBuffer : register(b1)
+{
+	ObjectData u_objectData;
+}
+
+cbuffer PassBuffer : register(b3)
+{
+	PassData u_passData;
+}
+
+cbuffer DirectionalLightBuffer : register(b4)
+{
+	DirectionalLight u_directionalLight;
+}
+
+cbuffer PointLightBuffer : register(b5)
+{
+	PointLightData u_pointLights;
+}
+
+cbuffer AnimationBuffer : register(b6)
+{
+	AnimationData u_animationData;
+}
+
+cbuffer SceneBuffer : register(b7)
+{
+	SceneData u_sceneData;
+}
+
+StructuredBuffer<ObjectData> u_objectDataS : register(t100);

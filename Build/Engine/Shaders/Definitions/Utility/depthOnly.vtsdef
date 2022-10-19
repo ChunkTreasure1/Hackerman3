@@ -1,0 +1,5 @@
+name: "DepthOnly"
+paths:
+  - "Engine/Shaders/HLSL/Deferred/GBufferGeneration_vs.hlsl"
+inputTextures:
+  []

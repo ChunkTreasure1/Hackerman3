@@ -1,0 +1,11 @@
+.vs/
+.vscode/
+bin/
+bin-int/
+Build/User
+Build/Engine/Shaders/Cache
+
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user

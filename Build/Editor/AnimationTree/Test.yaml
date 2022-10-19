@@ -1,0 +1,24 @@
+Nodes:
+  0:
+    Name: NewNode
+    ID: 1
+    InputPin: 2
+    InputPinType: 0
+    OutputPin: 3
+    OutputPinType: 0
+  1:
+    Name: NewNode
+    ID: 4
+    InputPin: 5
+    InputPinType: 0
+    OutputPin: 6
+    OutputPinType: 0
+  2:
+    Name: NewNode
+    ID: 7
+    InputPin: 8
+    InputPinType: 0
+    OutputPin: 9
+    OutputPinType: 0
+Links:
+  {}

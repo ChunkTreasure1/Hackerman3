@@ -1,0 +1,82 @@
+Abilities:
+  Primary:
+    cooldown: 0
+    size: [1, 2, 1]
+    damage: 10
+    furyIncrease: 8
+    description: player primary
+  Arrow:
+    cooldown: 0
+    damage: 5
+    lifetime: 5
+    speed: 4000
+    furyIncrease: 6
+    description: player secondary
+  Swipe:
+    cooldown: 0
+    size: [5, 4, 3]
+    damage: 30
+    swipeMoveSpeed: 300
+    cost: 20
+    description: player aoe
+  Dash:
+    cooldown: 0
+    range: 6
+    damage: 31
+    cost: 10
+    description: player movement
+  Fear:
+    cooldown: 10
+    fearTime: 5
+    damage: 5
+    radius: 7
+    cost: 15
+    description: player cc
+  BloodLust:
+    cooldown: 60
+    buffTime: 5
+    abilityCooldown: 1
+    cost: 80
+    description: player ult
+  CloseAttack:
+    cooldown: 1
+    timeAlive: 13.25
+    damage: 10
+    size: [303, 213, 171]
+    description: Melee enemy attack
+  ChampionAttack:
+    cooldown: 0
+    duration: 0
+    description: Champ themed arttack thing
+  StunAttack:
+    cooldown: 5
+    duration: 10
+    timeAlive: 1
+    damage: 10
+    size: [181, 168, 315]
+    description: Bruiser stun attack
+  RangedAttack:
+    cooldown: 2
+    range: 400
+    speed: 150
+    damage: 10
+    size: [20, 20, 20]
+    description: Ranged enemy attack
+  GasAttack:
+    cooldown: 15
+    radius: 125
+    description: Boss gas attack phase 3
+  GasShield:
+    radius: 400
+    description: Boss gas shield phase 2
+  Knockback:
+    cooldown: 0
+    force: 0
+    stunDuration: 0
+    size: [200, 200, 200]
+    description: Boss knockback when standing and hitting phase 1
+  LineSlam:
+    cooldown: 10
+    colliderLifetime: 0.25
+    size: [100, 100, 800]
+    description: Boss line slam phase 1

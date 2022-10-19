@@ -1,0 +1,5 @@
+*.vtsk filter=lfs diff=lfs merge=lfs -text
+*.vtanim filter=lfs diff=lfs merge=lfs -text
+*.bank filter=lfs diff=lfs merge=lfs -text
+*.ent filter=lfs diff=lfs merge=lfs -text
+*.exe filter=lfs diff=lfs merge=lfs -text

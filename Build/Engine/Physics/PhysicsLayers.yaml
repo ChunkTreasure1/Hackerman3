@@ -1,0 +1,33 @@
+PhysicsLayers:
+  - layerId: 0
+    bitValue: 1
+    collidesWith: 9
+    name: Default
+  - layerId: 1
+    bitValue: 2
+    collidesWith: 8
+    name: PlayerFearAbility
+  - layerId: 2
+    bitValue: 4
+    collidesWith: 72
+    name: PlayerAbility
+  - layerId: 3
+    bitValue: 8
+    collidesWith: 7
+    name: Enemy
+  - layerId: 4
+    bitValue: 16
+    collidesWith: 160
+    name: Player
+  - layerId: 5
+    bitValue: 32
+    collidesWith: 16
+    name: EnemyHitbox
+  - layerId: 6
+    bitValue: 64
+    collidesWith: 4
+    name: Destructable
+  - layerId: 7
+    bitValue: 128
+    collidesWith: 16
+    name: TheDeepOne

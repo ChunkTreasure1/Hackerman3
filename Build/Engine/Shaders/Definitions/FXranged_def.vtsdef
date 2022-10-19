@@ -1,0 +1,9 @@
+name: "FX_ranged"
+paths:
+  - "Engine/Shaders/HLSL/Forward/ForwardPBR_vs.hlsl"
+  - "Engine/Shaders/HLSL/FXranged/ranged_ps.hlsl"
+inputTextures:
+  - binding: 0
+    name: "Albedo"
+  - binding: 1
+    name: "Material"

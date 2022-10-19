@@ -1,0 +1,949 @@
+Assets:
+  - Handle: 15472528310099729947
+    Path: ""
+  - Handle: 1412442647613272538
+    Path: Assets\AI\Enemies\bruiser_enemy\CHR_Bruiser.vtchr
+  - Handle: 14542168267476178865
+    Path: Assets\AI\Enemies\bruiser_enemy\bruiser_attack_anim.vtanim
+  - Handle: 12116185230768778898
+    Path: Assets\AI\Enemies\bruiser_enemy\bruiser_death_anim.vtanim
+  - Handle: 17649534881084602447
+    Path: Assets\AI\Enemies\bruiser_enemy\bruiser_hurt_anim.vtanim
+  - Handle: 8924681955302048885
+    Path: Assets\AI\Enemies\bruiser_enemy\bruiser_idle_anim.vtanim
+  - Handle: 16144917195191050085
+    Path: Assets\AI\Enemies\bruiser_enemy\bruiser_sk.vtmat
+  - Handle: 2690032149991220006
+    Path: Assets\AI\Enemies\bruiser_enemy\bruiser_sk.vtmesh
+  - Handle: 4277006628565232069
+    Path: Assets\AI\Enemies\bruiser_enemy\bruiser_sk.vtsk
+  - Handle: 16042362635873673666
+    Path: Assets\AI\Enemies\bruiser_enemy\bruiser_walk_anim.vtanim
+  - Handle: 8693247797514274372
+    Path: Assets\AI\Enemies\melee_enemy\CHR_MeleeEnemy.vtchr
+  - Handle: 17764638146519895734
+    Path: Assets\AI\Enemies\melee_enemy\meleeEnemy_attack_anim.vtanim
+  - Handle: 6815216884484559862
+    Path: Assets\AI\Enemies\melee_enemy\meleeEnemy_death_anim.vtanim
+  - Handle: 13681532685833690685
+    Path: Assets\AI\Enemies\melee_enemy\meleeEnemy_hurt_anim.vtanim
+  - Handle: 6664962701630391301
+    Path: Assets\AI\Enemies\melee_enemy\meleeEnemy_idle_anim.vtanim
+  - Handle: 16182494331805508666
+    Path: Assets\AI\Enemies\melee_enemy\meleeEnemy_sk.vtmat
+  - Handle: 1706684972825381371
+    Path: Assets\AI\Enemies\melee_enemy\meleeEnemy_sk.vtmesh
+  - Handle: 10620113100658813140
+    Path: Assets\AI\Enemies\melee_enemy\meleeEnemy_sk.vtsk
+  - Handle: 2783121863278382973
+    Path: Assets\AI\Enemies\melee_enemy\meleeEnemy_walk_anim.vtanim
+  - Handle: 9571885611489935258
+    Path: Assets\AI\Enemies\ranged_enemy\CHR_RangedEnemy.vtchr
+  - Handle: 14990869457066475197
+    Path: Assets\AI\Enemies\ranged_enemy\ranged_sk.vtmat
+  - Handle: 10007310673342461686
+    Path: Assets\AI\Enemies\ranged_enemy\ranged_sk.vtmesh
+  - Handle: 9151440172942590755
+    Path: Assets\AI\Enemies\ranged_enemy\ranged_sk.vtsk
+  - Handle: 7849781769790511074
+    Path: Assets\Animations\Duke\AMIN_DukeOfTheDeep_RespawnPlayer.vtanim
+  - Handle: 8469669050036181317
+    Path: Assets\Animations\Duke\AMIN_theDeepOne_giveAbility.vtanim
+  - Handle: 6981482560284378261
+    Path: Assets\Animations\Duke\ANIM_DukeOfTheDeep_Idle.vtanim
+  - Handle: 8376488917506116550
+    Path: Assets\Animations\Duke\ANIM_DukeOfTheDeep_Spawn.vtanim
+  - Handle: 11173148677077129782
+    Path: Assets\Animations\Duke\ANIM_theDeepOne_talk.vtanim
+  - Handle: 15330169252418379824
+    Path: Assets\Animations\Duke\CHR_DeepOne.vtchr
+  - Handle: 13299568963327044086
+    Path: Assets\Animations\Duke\SK_DukeOfTheDeep.vtmat
+  - Handle: 3434850675083826304
+    Path: Assets\Animations\Duke\SK_DukeOfTheDeep.vtmesh
+  - Handle: 2720322593044814604
+    Path: Assets\Animations\Duke\SK_DukeOfTheDeep.vtsk
+  - Handle: 6175555293491041122
+    Path: Assets\Animations\Gremlin\CHR_Gremlin.vtchr
+  - Handle: 3805328208686854762
+    Path: Assets\Animations\Gremlin\Textures\T_Gremlin_m.dds
+  - Handle: 13216078324457547936
+    Path: Assets\Animations\Gremlin\Textures\T_Gremlin_n.dds
+  - Handle: 3420270195080641564
+    Path: Assets\Animations\Gremlin\Textures\T_gremlin_c.dds
+  - Handle: 194789102966611233
+    Path: Assets\Animations\Gremlin\gremlin_sk.vtmat
+  - Handle: 15484814701155840749
+    Path: Assets\Animations\Gremlin\gremlin_sk.vtmesh
+  - Handle: 15356186797594214973
+    Path: Assets\Animations\Gremlin\gremlin_sk.vtsk
+  - Handle: 5946903767252815180
+    Path: Assets\Animations\Gremlin\gremlin_walk.vtanim
+  - Handle: 11807447063348738333
+    Path: Assets\Animations\King\ANIM_King_Attack.vtanim
+  - Handle: 2951017771435852946
+    Path: Assets\Animations\King\ANIM_King_Death.vtanim
+  - Handle: 7896910402101465890
+    Path: Assets\Animations\King\ANIM_King_GasAttack.vtanim
+  - Handle: 13735367281405951331
+    Path: Assets\Animations\King\ANIM_King_PhaseTwoStart.vtanim
+  - Handle: 13446851526745406344
+    Path: Assets\Animations\King\CHR_King.vtchr
+  - Handle: 3362272496117205195
+    Path: Assets\Animations\King\SK_King.vtmat
+  - Handle: 9482562720221265929
+    Path: Assets\Animations\King\SK_King.vtmesh
+  - Handle: 6091344826088086638
+    Path: Assets\Animations\King\SK_King.vtsk
+  - Handle: 16955564582433648143
+    Path: Assets\Animations\yormom.vtchr
+  - Handle: 7725707216240905803
+    Path: Assets\Character\CHA_Player.vtchr
+  - Handle: 4705138107743777359
+    Path: Assets\Character\player_ability01Swipe_anim.vtanim
+  - Handle: 18241674963461782789
+    Path: Assets\Character\player_ability02Dash_anim.vtanim
+  - Handle: 11972668196657428826
+    Path: Assets\Character\player_ability03Fear_anim.vtanim
+  - Handle: 9578224064555635616
+    Path: Assets\Character\player_ability04Rage_anim.vtanim
+  - Handle: 15164636557064121006
+    Path: Assets\Character\player_basicAttack_anim.vtanim
+  - Handle: 8331772951893770285
+    Path: Assets\Character\player_die_anim.vtanim
+  - Handle: 4287760896840706981
+    Path: Assets\Character\player_idle_anim.vtanim
+  - Handle: 10759171607996972298
+    Path: Assets\Character\player_rangeAttack_anim.vtanim
+  - Handle: 7072352053845970745
+    Path: Assets\Character\player_run_anim.vtanim
+  - Handle: 16641174935639237123
+    Path: Assets\Character\player_sk.vtmat
+  - Handle: 10872164386779266070
+    Path: Assets\Character\player_sk.vtmesh
+  - Handle: 13381193933122168933
+    Path: Assets\Character\player_sk.vtsk
+  - Handle: 9842391240251888278
+    Path: Assets\Cutscenes\cutsceneIntro.mp4
+  - Handle: 9904801343386900367
+    Path: Assets\Cutscenes\cutsceneIntroTest.mp4
+  - Handle: 8518764782513420819
+    Path: Assets\Data\ParticleEmitterPresets\DefaultEmitterPreset.vtpp
+  - Handle: 2872844944811038197
+    Path: Assets\Data\ParticleEmitterPresets\DefaultEmitterPreset2.vtpp
+  - Handle: 11410513602613187384
+    Path: Assets\Data\ParticleEmitterPresets\TestEmitter.vtpp
+  - Handle: 14528881027857296121
+    Path: Assets\Levels\AlphaPlayTestLevel\AlphaPlayTest.vtscene
+  - Handle: 9575460255193287647
+    Path: Assets\Levels\CalibrationLevel\CalibrationLevel.vtscene
+  - Handle: 4001451662615527984
+    Path: Assets\Levels\GustavTestScene\GustavTestScene.vtscene
+  - Handle: 2704835133754196797
+    Path: Assets\Levels\GymAssets\GymAssets.vtscene
+  - Handle: 16614748281541729105
+    Path: Assets\Levels\GymNavMesh\GymNavMesh.vtscene
+  - Handle: 13948562629239535033
+    Path: Assets\Levels\IvarGym\IvarGym.vtscene
+  - Handle: 9653173991452777932
+    Path: Assets\Levels\Level 1 - Intro\Level 1 - Intro.vtscene
+  - Handle: 4227133279152547502
+    Path: Assets\Levels\Level 2 - Village\Level 2 - Village.vtscene
+  - Handle: 17247344791509176232
+    Path: Assets\Levels\Level 3 - Swamp\Level 3 - Swamp.vtscene
+  - Handle: 5731915049785849981
+    Path: Assets\Levels\Level 4 - Boss\Level 4 - Boss.vtscene
+  - Handle: 5640749075424775942
+    Path: Assets\Levels\MainMenu\MainMenu.vtscene
+  - Handle: 16382307861304943654
+    Path: Assets\Levels\MaxLVL\MaxLVL.vtscene
+  - Handle: 13037352695697920252
+    Path: Assets\Levels\NMPathfindTesting\NMPathfindTesting.vtscene
+  - Handle: 13317701034721188097
+    Path: Assets\Levels\NMTriangulateTesting\NMTriangulateTesting.vtscene
+  - Handle: 7197016928963699448
+    Path: Assets\Levels\PerformanceTest
+  - Handle: 2791468300979835786
+    Path: Assets\Levels\PerformanceTest\PerformanceTest.vtscene
+  - Handle: 17179597831122662125
+    Path: Assets\Levels\PlayerTestSandbox\PlayerTestSandbox.vtscene
+  - Handle: 14062858941166173394
+    Path: Assets\Levels\SC_Test\SC_Test.vtscene
+  - Handle: 8801929576128948257
+    Path: Assets\Levels\ShadowTest\ShadowTest.vtscene
+  - Handle: 16872429381298271138
+    Path: Assets\M_NewMaterial
+  - Handle: 2621764857210508945
+    Path: Assets\Materials\Calibration\M_Calibration_DarkGrey.vtmat
+  - Handle: 6994545178141216766
+    Path: Assets\Materials\Calibration\M_Calibration_LightGrey.vtmat
+  - Handle: 16774146042086532435
+    Path: Assets\Materials\M_BloomTest.vtmat
+  - Handle: 6701997475428687788
+    Path: Assets\Materials\M_ColliderDebug.vtmat
+  - Handle: 6591816951260738065
+    Path: Assets\Materials\M_FullMetal.vtmat
+  - Handle: 3262013129320796154
+    Path: Assets\Materials\M_New_Material.vtmat
+  - Handle: 11005017939171232467
+    Path: Assets\Meshes\Chest\SM_Particle_Chest.vtmat
+  - Handle: 13441708278441417907
+    Path: Assets\Meshes\Chest\SM_Particle_Chest.vtmesh
+  - Handle: 17959014644583914913
+    Path: Assets\Meshes\Chest\T_Particle_Chest_c.dds
+  - Handle: 15136547421341141587
+    Path: Assets\Meshes\Chest\T_Particle_Chest_m.dds
+  - Handle: 10354356358518198948
+    Path: Assets\Meshes\Chest\T_Particle_Chest_n.dds
+  - Handle: 538622872540361137
+    Path: Assets\Meshes\Cube\cube.vtmat
+  - Handle: 12081153960880872276
+    Path: Assets\Meshes\Cube\cube.vtmesh
+  - Handle: 9830399573183635299
+    Path: Assets\Meshes\FXmeshes\base.vtmesh
+  - Handle: 9709594321254307188
+    Path: Assets\Meshes\FXmeshes\fearAbillity.vtmesh
+  - Handle: 4470755111920522290
+    Path: Assets\Meshes\FXmeshes\glowSphere.vtmesh
+  - Handle: 6851058072402281393
+    Path: Assets\Meshes\FXmeshes\rageAbillity.vtmesh
+  - Handle: 7804987888903213845
+    Path: Assets\Meshes\FXmeshes\rangedAbillity.vtmesh
+  - Handle: 13220472001332557127
+    Path: Assets\Meshes\FXmeshes\rangedAbillity2.vtmesh
+  - Handle: 4463489548404886404
+    Path: Assets\Meshes\FXmeshes\swipeAbillity.vtmesh
+  - Handle: 6267592123804601916
+    Path: Assets\Meshes\Frog\frog.vtmat
+  - Handle: 17035498398125546881
+    Path: Assets\Meshes\Frog\frog.vtmesh
+  - Handle: 5843414791827486765
+    Path: Assets\Meshes\M_New_Material.vtmat
+  - Handle: 6012346265820869196
+    Path: Assets\Meshes\MaterialBall\MaterialBall.vtmat
+  - Handle: 9587996599829692033
+    Path: Assets\Meshes\MaterialBall\MaterialBall.vtmesh
+  - Handle: 862234700230780386
+    Path: Assets\Meshes\MaterialBall\Textures\Matball_One_c.dds
+  - Handle: 2254179033459793430
+    Path: Assets\Meshes\MaterialBall\Textures\Matball_One_m.dds
+  - Handle: 5627274674960291399
+    Path: Assets\Meshes\MaterialBall\Textures\Matball_One_n.dds
+  - Handle: 10837684760346171436
+    Path: Assets\Meshes\MaterialBall\Textures\Matball_Two_c.dds
+  - Handle: 9203795701205619455
+    Path: Assets\Meshes\MaterialBall\Textures\Matball_Two_m.dds
+  - Handle: 9364414016479880977
+    Path: Assets\Meshes\MaterialBall\Textures\Matball_Two_n.dds
+  - Handle: 7905764057905009308
+    Path: Assets\Meshes\NavMesh\AStarTest.vtmat
+  - Handle: 14633247683556705746
+    Path: Assets\Meshes\NavMesh\AStarTest.vtmesh
+  - Handle: 15646781848530009431
+    Path: Assets\Meshes\NavMesh\TriangulationTest.vtmat
+  - Handle: 4387976683640635772
+    Path: Assets\Meshes\NavMesh\TriangulationTest.vtmesh
+  - Handle: 7848357758191138748
+    Path: Assets\Meshes\Primitives\Capsule.vtmesh
+  - Handle: 9016504729640018304
+    Path: Assets\Meshes\Primitives\Cone.vtmesh
+  - Handle: 12031292650100072387
+    Path: Assets\Meshes\Primitives\Cube.vtmat
+  - Handle: 1450118824198521588
+    Path: Assets\Meshes\Primitives\Cube.vtmesh
+  - Handle: 8287060333551348416
+    Path: Assets\Meshes\Primitives\Cylinder.vtmesh
+  - Handle: 9021814921374099161
+    Path: Assets\Meshes\Primitives\Plane.vtmesh
+  - Handle: 14081923515998489032
+    Path: Assets\Meshes\Primitives\Sphere.vtmesh
+  - Handle: 1742705324702101284
+    Path: Assets\Meshes\Rock\Rock1.vtmat
+  - Handle: 9107329053646623528
+    Path: Assets\Meshes\Rock\Rock1.vtmesh
+  - Handle: 12987885820541183982
+    Path: Assets\Meshes\Rock\Rock1_d.dds
+  - Handle: 3220151746654262027
+    Path: Assets\Meshes\Rock\Rock1_m.dds
+  - Handle: 10503230339617645908
+    Path: Assets\Meshes\Rock\Rock1_n.dds
+  - Handle: 12535370405434716578
+    Path: Assets\Meshes\SG\Boss\SM_Pillars_Boss.vtmat
+  - Handle: 13976890794072130278
+    Path: Assets\Meshes\SG\Boss\SM_Pillars_Boss.vtmesh
+  - Handle: 215642769390061192
+    Path: Assets\Meshes\SG\Characters\CHAR_Avatar.vtmat
+  - Handle: 9231078858390944662
+    Path: Assets\Meshes\SG\Characters\CHAR_Avatar.vtmesh
+  - Handle: 10474657416609741589
+    Path: Assets\Meshes\SG\Gustav Test\SM_Barrel_01.vtmat
+  - Handle: 5121214472347058343
+    Path: Assets\Meshes\SG\Gustav Test\SM_Barrel_01.vtmesh
+  - Handle: 11076004959818819208
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Ground.fbm\texture_atlats.dds
+  - Handle: 507022011891651562
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Ground.vtmat
+  - Handle: 8473301643372426842
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Ground.vtmesh
+  - Handle: 8563716325167433662
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_45_12x12m.fbm\texture_atlats.dds
+  - Handle: 1457271628595255932
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_45_12x12m.vtmesh
+  - Handle: 13715638534851330147
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_45_16x16m.fbm\texture_atlats.dds
+  - Handle: 920795682146410429
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_45_16x16m.vtmesh
+  - Handle: 10678588250080043018
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_Ground.fbm\texture_atlats.dds
+  - Handle: 18072500263466947719
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_Ground.vtmesh
+  - Handle: 1063873839585928201
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_InnerCorner.fbm\texture_atlats.dds
+  - Handle: 7819061510257718482
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_InnerCorner.vtmesh
+  - Handle: 5690757703681640808
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_OuterCorner.fbm\texture_atlats.dds
+  - Handle: 10231974287079317725
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_OuterCorner.vtmesh
+  - Handle: 10775610530407775372
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_Straight_16m.fbm\texture_atlats.dds
+  - Handle: 7193330852164160501
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_Straight_16m.vtmesh
+  - Handle: 16188653478017170956
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_Straight_4m.fbm\texture_atlats.dds
+  - Handle: 1189326287150885366
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_Straight_4m.vtmesh
+  - Handle: 12176660213904041484
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_Straight_8m.fbm\texture_atlats.dds
+  - Handle: 758882906756529797
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\SM_Water_Straight_8m.vtmesh
+  - Handle: 9944640651681963038
+    Path: Assets\Meshes\SG\Swamp\Modular\Ground_Water\WaterTiles.vtmesh
+  - Handle: 13891457358902987057
+    Path: Assets\Meshes\SG\Swamp\Modular\swampFillOut_01.vtmat
+  - Handle: 4908599447316347102
+    Path: Assets\Meshes\SG\Swamp\Modular\swampFillOut_01.vtmesh
+  - Handle: 6262886342064830557
+    Path: Assets\Meshes\SG\Swamp\Modular\swampInnerCorner_01.vtmat
+  - Handle: 11564876927322011784
+    Path: Assets\Meshes\SG\Swamp\Modular\swampInnerCorner_01.vtmesh
+  - Handle: 6274771015976930816
+    Path: Assets\Meshes\SG\Swamp\Modular\swampOuterCorner45_01.vtmat
+  - Handle: 2742612020161204913
+    Path: Assets\Meshes\SG\Swamp\Modular\swampOuterCorner45_01.vtmesh
+  - Handle: 1648241035480857362
+    Path: Assets\Meshes\SG\Swamp\Modular\swampOuterCorner_01.vtmat
+  - Handle: 12810187806840854606
+    Path: Assets\Meshes\SG\Swamp\Modular\swampOuterCorner_01.vtmesh
+  - Handle: 16812248933934796102
+    Path: Assets\Meshes\SG\Swamp\Modular\swampStraightCurve_01.vtmat
+  - Handle: 17571312800404354458
+    Path: Assets\Meshes\SG\Swamp\Modular\swampStraightCurve_01.vtmesh
+  - Handle: 13718609005847078838
+    Path: Assets\Meshes\SG\Swamp\Modular\swampStraight_01.vtmat
+  - Handle: 6320749429435600798
+    Path: Assets\Meshes\SG\Swamp\Modular\swampStraight_01.vtmesh
+  - Handle: 7737350708996706719
+    Path: Assets\Meshes\SG\Swamp\Modular\swampStraight_02.vtmat
+  - Handle: 11430903022529458539
+    Path: Assets\Meshes\SG\Swamp\Modular\swampStraight_02.vtmesh
+  - Handle: 11926101162139878858
+    Path: Assets\Meshes\SG\Swamp\Modular\swampStraight_03.vtmat
+  - Handle: 4246111966693674426
+    Path: Assets\Meshes\SG\Swamp\Modular\swampStraight_03.vtmesh
+  - Handle: 990906723758414695
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_01.vtmat
+  - Handle: 10920012343056807035
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_01.vtmesh
+  - Handle: 5653843898158871705
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_02.vtmat
+  - Handle: 12317821210557370305
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_02.vtmesh
+  - Handle: 14325407032703859426
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_03.vtmat
+  - Handle: 437602861374831474
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_03.vtmesh
+  - Handle: 14835851626052694793
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_04.vtmat
+  - Handle: 17565805697497331356
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_04.vtmesh
+  - Handle: 10077114591449358604
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_05.vtmat
+  - Handle: 9700787469220594820
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_05.vtmesh
+  - Handle: 11413179197373725330
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_06.vtmat
+  - Handle: 5936888735366737803
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_06.vtmesh
+  - Handle: 3772517576377896803
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_07.vtmat
+  - Handle: 1861405246653736610
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_07.vtmesh
+  - Handle: 1956310125894838309
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_Blacksmith.vtmat
+  - Handle: 5133715979067210957
+    Path: Assets\Meshes\SG\Village\Houses\SM_House_Blacksmith.vtmesh
+  - Handle: 6489929960967411199
+    Path: Assets\Meshes\SG\Village\Houses\SM_Shack_Small.vtmat
+  - Handle: 4997900743985950124
+    Path: Assets\Meshes\SG\Village\Houses\SM_Shack_Small.vtmesh
+  - Handle: 13305097922410057761
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_4x4.vtmat
+  - Handle: 17449859519947202552
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_4x4.vtmesh
+  - Handle: 34734510834324162
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_4x4_02.vtmat
+  - Handle: 686450259262501628
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_4x4_02.vtmesh
+  - Handle: 18271134893180690279
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_4x4_03.vtmat
+  - Handle: 183280044557163998
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_4x4_03.vtmesh
+  - Handle: 11551390621745823194
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_LevelTransition_End_2x8.vtmat
+  - Handle: 9941364207733424257
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_LevelTransition_End_2x8.vtmesh
+  - Handle: 17548360049148323258
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_LevelTransition_Middle_2x8.vtmat
+  - Handle: 15792246659329496354
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_LevelTransition_Middle_2x8.vtmesh
+  - Handle: 8273158213548441713
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_LevelTransition_Start_2x8.vtmat
+  - Handle: 16330514164791777046
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_LevelTransition_Start_2x8.vtmesh
+  - Handle: 10211365154717144829
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_Middle_2x4.vtmat
+  - Handle: 697498153472698824
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_Middle_2x4.vtmesh
+  - Handle: 2471265151583675532
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_Start_2x4.vtmat
+  - Handle: 17771261770071236318
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Bridge_Start_2x4.vtmesh
+  - Handle: 4203046614407963721
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Stairs_4x4.vtmat
+  - Handle: 4679444035692811734
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Stairs_4x4.vtmesh
+  - Handle: 16129816373722886413
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Stairs_6x4.vtmat
+  - Handle: 16535607201092011726
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Stairs_6x4.vtmesh
+  - Handle: 10804688991359543314
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Stairs_8x4.vtmat
+  - Handle: 8651863985941583699
+    Path: Assets\Meshes\SG\Village\Modular\SM_Platform_Stairs_8x4.vtmesh
+  - Handle: 5123647113100381180
+    Path: Assets\Meshes\SG\Village\SM_Dryingrack.vtmat
+  - Handle: 1191677763372279721
+    Path: Assets\Meshes\SG\Village\SM_Dryingrack.vtmesh
+  - Handle: 4430786979870245055
+    Path: Assets\Meshes\SG\Village\SM_Fish_Hanging.vtmat
+  - Handle: 1360679018884157793
+    Path: Assets\Meshes\SG\Village\SM_Fish_Hanging.vtmesh
+  - Handle: 5759485436687355788
+    Path: Assets\Meshes\SG\Village\SM_Saw_Small.vtmat
+  - Handle: 15109648145024038436
+    Path: Assets\Meshes\SG\Village\SM_Saw_Small.vtmesh
+  - Handle: 3215718445149878608
+    Path: Assets\Meshes\ShatterTest\SM_ShatterTest.vtmat
+  - Handle: 15973797441905864366
+    Path: Assets\Meshes\ShatterTest\SM_ShatterTest.vtmesh
+  - Handle: 4791557825738615040
+    Path: Assets\Meshes\Sponza\Textures\Curtain_blue_mat_c.dds
+  - Handle: 16742519220686375022
+    Path: Assets\Meshes\Sponza\Textures\Curtain_blue_mat_m.dds
+  - Handle: 2252676999975760090
+    Path: Assets\Meshes\Sponza\Textures\Curtain_blue_mat_n.dds
+  - Handle: 382511250852349770
+    Path: Assets\Meshes\Sponza\Textures\Curtain_green_mat_c.dds
+  - Handle: 7131786653250161363
+    Path: Assets\Meshes\Sponza\Textures\Curtain_green_mat_m.dds
+  - Handle: 10729621724531443194
+    Path: Assets\Meshes\Sponza\Textures\Curtain_green_mat_n.dds
+  - Handle: 2179143324846535181
+    Path: Assets\Meshes\Sponza\Textures\Curtain_red_mat_c.dds
+  - Handle: 11332571118945501539
+    Path: Assets\Meshes\Sponza\Textures\Curtain_red_mat_m.dds
+  - Handle: 2842079466407923853
+    Path: Assets\Meshes\Sponza\Textures\Curtain_red_mat_n.dds
+  - Handle: 12347980173426294249
+    Path: Assets\Meshes\Sponza\Textures\arch_mat_c.dds
+  - Handle: 14507763011080036185
+    Path: Assets\Meshes\Sponza\Textures\arch_mat_m.dds
+  - Handle: 6599912686159212964
+    Path: Assets\Meshes\Sponza\Textures\arch_mat_n.dds
+  - Handle: 17360042982620735489
+    Path: Assets\Meshes\Sponza\Textures\background_mat_c.dds
+  - Handle: 1923344422476091436
+    Path: Assets\Meshes\Sponza\Textures\background_mat_m.dds
+  - Handle: 9444755113663322403
+    Path: Assets\Meshes\Sponza\Textures\background_mat_n.dds
+  - Handle: 17805205801806005748
+    Path: Assets\Meshes\Sponza\Textures\bricks_mat_c.dds
+  - Handle: 9436764469741482220
+    Path: Assets\Meshes\Sponza\Textures\bricks_mat_m.dds
+  - Handle: 12703154565581939817
+    Path: Assets\Meshes\Sponza\Textures\bricks_mat_n.dds
+  - Handle: 12187217211715219562
+    Path: Assets\Meshes\Sponza\Textures\ceiling_mat_c.dds
+  - Handle: 6585777356976467477
+    Path: Assets\Meshes\Sponza\Textures\ceiling_mat_m.dds
+  - Handle: 15795990542572148237
+    Path: Assets\Meshes\Sponza\Textures\ceiling_mat_n.dds
+  - Handle: 7125931063221540510
+    Path: Assets\Meshes\Sponza\Textures\chain_mat_c.dds
+  - Handle: 18292740754991944871
+    Path: Assets\Meshes\Sponza\Textures\chain_mat_m.dds
+  - Handle: 15983018452372124882
+    Path: Assets\Meshes\Sponza\Textures\chain_mat_n.dds
+  - Handle: 13747375260485105916
+    Path: Assets\Meshes\Sponza\Textures\column_a_mat_c.dds
+  - Handle: 6130719761194998841
+    Path: Assets\Meshes\Sponza\Textures\column_a_mat_m.dds
+  - Handle: 17881448338183273036
+    Path: Assets\Meshes\Sponza\Textures\column_a_mat_n.dds
+  - Handle: 4732346168248912941
+    Path: Assets\Meshes\Sponza\Textures\column_b_mat_c.dds
+  - Handle: 13565271869182666962
+    Path: Assets\Meshes\Sponza\Textures\column_b_mat_m.dds
+  - Handle: 9238539985672548152
+    Path: Assets\Meshes\Sponza\Textures\column_b_mat_n.dds
+  - Handle: 3585820300134929379
+    Path: Assets\Meshes\Sponza\Textures\column_c_mat_c.dds
+  - Handle: 13263509382498523467
+    Path: Assets\Meshes\Sponza\Textures\column_c_mat_m.dds
+  - Handle: 15282689444206737058
+    Path: Assets\Meshes\Sponza\Textures\column_c_mat_n.dds
+  - Handle: 15000971609834352388
+    Path: Assets\Meshes\Sponza\Textures\details_mat_c.dds
+  - Handle: 12156767529531121508
+    Path: Assets\Meshes\Sponza\Textures\details_mat_m.dds
+  - Handle: 4434492219671238006
+    Path: Assets\Meshes\Sponza\Textures\details_mat_n.dds
+  - Handle: 4558073896368598172
+    Path: Assets\Meshes\Sponza\Textures\fabric_blue_mat_c.dds
+  - Handle: 6247773359328600104
+    Path: Assets\Meshes\Sponza\Textures\fabric_blue_mat_m.dds
+  - Handle: 4060416465182414693
+    Path: Assets\Meshes\Sponza\Textures\fabric_blue_mat_n.dds
+  - Handle: 11232239860656446188
+    Path: Assets\Meshes\Sponza\Textures\fabric_green_mat_c.dds
+  - Handle: 3292903488076775060
+    Path: Assets\Meshes\Sponza\Textures\fabric_green_mat_m.dds
+  - Handle: 13462723533507838184
+    Path: Assets\Meshes\Sponza\Textures\fabric_green_mat_n.dds
+  - Handle: 14883204234671514936
+    Path: Assets\Meshes\Sponza\Textures\fabric_red_mat_c.dds
+  - Handle: 17624035731733853107
+    Path: Assets\Meshes\Sponza\Textures\fabric_red_mat_m.dds
+  - Handle: 16013027652986642814
+    Path: Assets\Meshes\Sponza\Textures\fabric_red_mat_n.dds
+  - Handle: 14696502231007272503
+    Path: Assets\Meshes\Sponza\Textures\flagpole_mat_c.dds
+  - Handle: 5856127007707388724
+    Path: Assets\Meshes\Sponza\Textures\flagpole_mat_m.dds
+  - Handle: 14804651220560010820
+    Path: Assets\Meshes\Sponza\Textures\flagpole_mat_n.dds
+  - Handle: 17504797500466692506
+    Path: Assets\Meshes\Sponza\Textures\floor_mat_c.dds
+  - Handle: 6139991478879820339
+    Path: Assets\Meshes\Sponza\Textures\floor_mat_m.dds
+  - Handle: 4639031632491625905
+    Path: Assets\Meshes\Sponza\Textures\floor_mat_n.dds
+  - Handle: 3628858174038336238
+    Path: Assets\Meshes\Sponza\Textures\flowers_mat_c.dds
+  - Handle: 4322061847017013264
+    Path: Assets\Meshes\Sponza\Textures\flowers_mat_m.dds
+  - Handle: 632933969002833265
+    Path: Assets\Meshes\Sponza\Textures\flowers_mat_n.dds
+  - Handle: 12751828006086424319
+    Path: Assets\Meshes\Sponza\Textures\lion_mat_c.dds
+  - Handle: 938875446036503280
+    Path: Assets\Meshes\Sponza\Textures\lion_mat_m.dds
+  - Handle: 15654596651841394772
+    Path: Assets\Meshes\Sponza\Textures\lion_mat_n.dds
+  - Handle: 15581704686468390507
+    Path: Assets\Meshes\Sponza\Textures\roof_mat_c.dds
+  - Handle: 6450559361137871625
+    Path: Assets\Meshes\Sponza\Textures\roof_mat_m.dds
+  - Handle: 14999063721374301903
+    Path: Assets\Meshes\Sponza\Textures\roof_mat_n.dds
+  - Handle: 16349885220895546477
+    Path: Assets\Meshes\Sponza\Textures\thorn_mat_c.dds
+  - Handle: 3365325145532208457
+    Path: Assets\Meshes\Sponza\Textures\thorn_mat_m.dds
+  - Handle: 15563863223719160201
+    Path: Assets\Meshes\Sponza\Textures\thorn_mat_n.dds
+  - Handle: 17400872471136913778
+    Path: Assets\Meshes\Sponza\Textures\vase_hanging_mat_c.dds
+  - Handle: 12845013017440328664
+    Path: Assets\Meshes\Sponza\Textures\vase_hanging_mat_m.dds
+  - Handle: 4398533155985405881
+    Path: Assets\Meshes\Sponza\Textures\vase_hanging_mat_n.dds
+  - Handle: 1662747378782251776
+    Path: Assets\Meshes\Sponza\Textures\vase_mat_c.dds
+  - Handle: 13202620607399705801
+    Path: Assets\Meshes\Sponza\Textures\vase_mat_m.dds
+  - Handle: 14018057300703790817
+    Path: Assets\Meshes\Sponza\Textures\vase_mat_n.dds
+  - Handle: 9951907527024620445
+    Path: Assets\Meshes\Sponza\Textures\vase_round_mat_c.dds
+  - Handle: 7535502801046894844
+    Path: Assets\Meshes\Sponza\Textures\vase_round_mat_m.dds
+  - Handle: 2874463125608154041
+    Path: Assets\Meshes\Sponza\Textures\vase_round_mat_n.dds
+  - Handle: 15261424427880110152
+    Path: Assets\Meshes\Sponza\sponzaForTGE.vtmat
+  - Handle: 5436586117245748967
+    Path: Assets\Meshes\Sponza\sponzaForTGE.vtmesh
+  - Handle: 17038962211441796790
+    Path: Assets\Prefabs\Arrow.vtprefab
+  - Handle: 9035112376948772709
+    Path: Assets\Prefabs\BlockoutWalkable.vtprefab
+  - Handle: 15144554625999549591
+    Path: Assets\Prefabs\Bloodlust.vtprefab
+  - Handle: 15547161204808918267
+    Path: Assets\Prefabs\Boss.vtprefab
+  - Handle: 2282974024468322568
+    Path: Assets\Prefabs\BruiserEnemy.vtprefab
+  - Handle: 10309213163230567990
+    Path: Assets\Prefabs\DestructableObjectBase.vtprefab
+  - Handle: 15301072222650844570
+    Path: Assets\Prefabs\Fear.vtprefab
+  - Handle: 14338155887744349615
+    Path: Assets\Prefabs\GameCamera.vtprefab
+  - Handle: 7123954964713305303
+    Path: Assets\Prefabs\HealthPickupSpawner.vtprefab
+  - Handle: 1073714074467243343
+    Path: Assets\Prefabs\LevelTransitionTrigger.vtprefab
+  - Handle: 5500159410827459613
+    Path: Assets\Prefabs\MeleeEnemy.vtprefab
+  - Handle: 12307882083594483669
+    Path: Assets\Prefabs\NewEntity.vtprefab
+  - Handle: 9580855602387532164
+    Path: Assets\Prefabs\Player.vtprefab
+  - Handle: 6998962910076770721
+    Path: Assets\Prefabs\Point-6.vtprefab
+  - Handle: 7359638130322274246
+    Path: Assets\Prefabs\Primary.vtprefab
+  - Handle: 3871994027876071077
+    Path: Assets\Prefabs\RangedEnemy.vtprefab
+  - Handle: 5275726974977676327
+    Path: Assets\Prefabs\SM_Platform_4x4.vtprefab
+  - Handle: 7377414676615186183
+    Path: Assets\Prefabs\Swipe.vtprefab
+  - Handle: 15418971627437792771
+    Path: Assets\Prefabs\TheDeepOne.vtprefab
+  - Handle: 14414590604080415369
+    Path: Assets\Prefabs\base.vtprefab
+  - Handle: 8642649241492481401
+    Path: Assets\Textures\FullMetal\T_FullMetal_N.dds
+  - Handle: 8964793924534648409
+    Path: Assets\Textures\FullMetal\T_FullMetal_c.dds
+  - Handle: 8914712907744299375
+    Path: Assets\Textures\FullMetal\T_FullMetal_m.dds
+  - Handle: 3112048973299383844
+    Path: Assets\Textures\Gustav\barrel_c.dds
+  - Handle: 2802058379720813103
+    Path: Assets\Textures\Gustav\barrel_m.dds
+  - Handle: 17948462686835376967
+    Path: Assets\Textures\Gustav\barrel_n.dds
+  - Handle: 5878931807824162618
+    Path: Assets\Textures\HDRIs\newport_loft.hdr
+  - Handle: 6803789034985146451
+    Path: Assets\Textures\HDRIs\studio_small_08_4k.hdr
+  - Handle: 11891233865637376997
+    Path: Assets\Textures\Water\WaterShader_C.dds
+  - Handle: 6983071075718322072
+    Path: Assets\Textures\Water\WaterShader_M.dds
+  - Handle: 3915481669606582991
+    Path: Assets\Textures\Water\WaterShader_N.dds
+  - Handle: 7036535242411046633
+    Path: Assets\Textures\arrowFX\arrowTrail1_C.dds
+  - Handle: 2179828067449090374
+    Path: Assets\Textures\arrowFX\arrowTrail_C.dds
+  - Handle: 2544575289485858885
+    Path: Assets\Textures\dashFX\dash_C.dds
+  - Handle: 535286543622357396
+    Path: Assets\Textures\fearFX\HWAlt1DarkC.dds
+  - Handle: 5324428729286575808
+    Path: Assets\Textures\fearFX\fear_darkBlue_C.dds
+  - Handle: 11063514611545415783
+    Path: Assets\Textures\rageFX\HW_alt0_pink.dds
+  - Handle: 9092164613742330633
+    Path: Assets\Textures\smokeFX\HWAlt1DarkC.dds
+  - Handle: 18338168526086497252
+    Path: Assets\Textures\smokeFX\fear_darkBlue_C.dds
+  - Handle: 14495181996442632103
+    Path: Assets\Textures\swipeFX\Slash_C.dds
+  - Handle: 1208003688941825070
+    Path: Assets\Textures\test_hdri.dds
+  - Handle: 1452741496037173015
+    Path: Assets\Textures\texture_atlats_c.dds
+  - Handle: 16329224113395863997
+    Path: Assets\UI\AbilityPopUpTest.dds
+  - Handle: 11762318677639110857
+    Path: Assets\UI\Debug\slider_button.dds
+  - Handle: 375747093101209758
+    Path: Assets\UI\Debug\vinjetttest.dds
+  - Handle: 8659235995675819746
+    Path: Assets\UI\DebugButtonSelected.dds
+  - Handle: 14842075488353187394
+    Path: Assets\UI\DebugButtonUnselected.dds
+  - Handle: 17349082167878171087
+    Path: Assets\UI\Font\OpenSans-Regular.ttf
+  - Handle: 1743406438190255354
+    Path: Assets\UI\Font\diablo.ttf
+  - Handle: 6550896284011729908
+    Path: Assets\UI\M_New_Material.vtmat
+  - Handle: 15052580732064658006
+    Path: Assets\UI\PauseUI.dds
+  - Handle: 2169328021973462710
+    Path: Assets\UI\UITest.dds
+  - Handle: 2677036700331432822
+    Path: Assets\UI\spriteTest.dds
+  - Handle: 6621769670258375127
+    Path: Assets\UI\spriteTest2.dds
+  - Handle: 13350437708641286735
+    Path: Assets\UI\testSpritesheet.dds
+  - Handle: 3075449408664193372
+    Path: Assets\VFX\FXdash.vtmat
+  - Handle: 14821118835283697537
+    Path: Assets\VFX\FXfear.vtmat
+  - Handle: 772293992975529252
+    Path: Assets\VFX\FXglow.vtmat
+  - Handle: 8862000965912192682
+    Path: Assets\VFX\FXrage.vtmat
+  - Handle: 7861083214136719120
+    Path: Assets\VFX\FXranged.vtmat
+  - Handle: 8032523896965554612
+    Path: Assets\VFX\FXswipe.vtmat
+  - Handle: 17364613420526135490
+    Path: Assets\VFX\M_NewMaterial
+  - Handle: 17203693567765721945
+    Path: Assets\VFX\M_New_Material.vtmat
+  - Handle: 3129797735625499999
+    Path: Assets\spriteTest.dds
+  - Handle: 18385868330749746551
+    Path: Assets\spriteTest2.dds
+  - Handle: 7897045856998731966
+    Path: Editor\Textures\Icons\AssetIcons\icon_animatedCharacter.dds
+  - Handle: 13892475874173124080
+    Path: Editor\Textures\Icons\AssetIcons\icon_animation.dds
+  - Handle: 11806028117629938703
+    Path: Editor\Textures\Icons\AssetIcons\icon_material.dds
+  - Handle: 651283694671506647
+    Path: Editor\Textures\Icons\AssetIcons\icon_mesh.dds
+  - Handle: 10553720946774476836
+    Path: Editor\Textures\Icons\AssetIcons\icon_meshSource.dds
+  - Handle: 5566455934486474051
+    Path: Editor\Textures\Icons\AssetIcons\icon_particlePreset.dds
+  - Handle: 11192150696239022274
+    Path: Editor\Textures\Icons\AssetIcons\icon_prefab.dds
+  - Handle: 14231433526025661481
+    Path: Editor\Textures\Icons\AssetIcons\icon_scene.dds
+  - Handle: 16021683900041361084
+    Path: Editor\Textures\Icons\AssetIcons\icon_skeleton.dds
+  - Handle: 12981142992660037943
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim1.dds
+  - Handle: 16655609541968806944
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim10.dds
+  - Handle: 17475642595216963730
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim11.dds
+  - Handle: 15122804920590891280
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim12.dds
+  - Handle: 9534154902495198795
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim13.dds
+  - Handle: 8319634742397627223
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim14.dds
+  - Handle: 13222907533286042242
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim15.dds
+  - Handle: 17354571432015380499
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim16.dds
+  - Handle: 56459246833115697
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim17.dds
+  - Handle: 7401166707845217283
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim18.dds
+  - Handle: 10294188005668042804
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim19.dds
+  - Handle: 7644463043723999797
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim2.dds
+  - Handle: 16411824143786707875
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim20.dds
+  - Handle: 8885747297986116194
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim21.dds
+  - Handle: 3815227739889276068
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim22.dds
+  - Handle: 16653474426432640633
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim23.dds
+  - Handle: 7301533848546359445
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim24.dds
+  - Handle: 4850656057196768026
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim25.dds
+  - Handle: 17561418884499948761
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim26.dds
+  - Handle: 8028160324197680300
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim27.dds
+  - Handle: 5994522356659320793
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim28.dds
+  - Handle: 6664718348345061064
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim29.dds
+  - Handle: 7075586102885563849
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim3.dds
+  - Handle: 4569973980469500731
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim30.dds
+  - Handle: 14714403875266187810
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim4.dds
+  - Handle: 7407260256329060262
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim5.dds
+  - Handle: 8625524297465226990
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim6.dds
+  - Handle: 3574037671876014539
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim7.dds
+  - Handle: 13534553016734682332
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim8.dds
+  - Handle: 15426850188900754940
+    Path: Editor\Textures\Icons\Physics\LampPhysicsAnim9.dds
+  - Handle: 9067494849326368665
+    Path: Editor\Textures\Icons\icon_add.dds
+  - Handle: 2054807549899931429
+    Path: Editor\Textures\Icons\icon_back.dds
+  - Handle: 8903311780467398378
+    Path: Editor\Textures\Icons\icon_directory.dds
+  - Handle: 5886499226234780676
+    Path: Editor\Textures\Icons\icon_entityGizmo.dds
+  - Handle: 7938637539265079781
+    Path: Editor\Textures\Icons\icon_file.dds
+  - Handle: 12662204146849038225
+    Path: Editor\Textures\Icons\icon_filter.dds
+  - Handle: 4511311781894093918
+    Path: Editor\Textures\Icons\icon_getMaterial.dds
+  - Handle: 15885595389783319522
+    Path: Editor\Textures\Icons\icon_hidden.dds
+  - Handle: 17157474282565891883
+    Path: Editor\Textures\Icons\icon_lightGizmo.dds
+  - Handle: 3013553982930192651
+    Path: Editor\Textures\Icons\icon_localSpace.dds
+  - Handle: 11387908391931466728
+    Path: Editor\Textures\Icons\icon_locked.dds
+  - Handle: 13614479443636174446
+    Path: Editor\Textures\Icons\icon_open.dds
+  - Handle: 13455722869466717137
+    Path: Editor\Textures\Icons\icon_play.dds
+  - Handle: 17806691395827660064
+    Path: Editor\Textures\Icons\icon_reload.dds
+  - Handle: 11591628179562999621
+    Path: Editor\Textures\Icons\icon_save.dds
+  - Handle: 3956999542695106072
+    Path: Editor\Textures\Icons\icon_search.dds
+  - Handle: 4635436279152047447
+    Path: Editor\Textures\Icons\icon_setMaterial.dds
+  - Handle: 8762305156584894985
+    Path: Editor\Textures\Icons\icon_settings.dds
+  - Handle: 3576533032387253735
+    Path: Editor\Textures\Icons\icon_showGizmo.dds
+  - Handle: 14845728869148276132
+    Path: Editor\Textures\Icons\icon_snapRotation.dds
+  - Handle: 16988333727310281164
+    Path: Editor\Textures\Icons\icon_snapScale.dds
+  - Handle: 6610752037761512843
+    Path: Editor\Textures\Icons\icon_snapToGrid.dds
+  - Handle: 17560169090090079185
+    Path: Editor\Textures\Icons\icon_stop.dds
+  - Handle: 13472087602036370987
+    Path: Editor\Textures\Icons\icon_unlocked.dds
+  - Handle: 2056605782425435285
+    Path: Editor\Textures\Icons\icon_visible.dds
+  - Handle: 6051308512888560621
+    Path: Editor\Textures\Icons\icon_worldSpace.dds
+  - Handle: 17115958898426640356
+    Path: Engine\Fonts\Futura\futura-light.ttf
+  - Handle: 17079964332666125831
+    Path: Engine\Fonts\Inter\Inter-Regular.ttf
+  - Handle: 1840015462698873783
+    Path: Engine\Fonts\OpenSans-Regular.ttf
+  - Handle: 11761382301894343279
+    Path: Engine\Shaders\Definitions\2D\entityGizmo.vtsdef
+  - Handle: 8249080186669394864
+    Path: Engine\Shaders\Definitions\2D\grid.vtsdef
+  - Handle: 3334216127909560529
+    Path: Engine\Shaders\Definitions\2D\line.vtsdef
+  - Handle: 9052753294708047633
+    Path: Engine\Shaders\Definitions\2D\sprite.vtsdef
+  - Handle: 1518639205814274063
+    Path: Engine\Shaders\Definitions\2D\text.vtsdef
+  - Handle: 2510212279697468461
+    Path: Engine\Shaders\Definitions\Editor\colliderDebug.vtsdef
+  - Handle: 9689552712379560599
+    Path: Engine\Shaders\Definitions\Editor\jumpFloodComposite.vtsdef
+  - Handle: 7125984091584696814
+    Path: Engine\Shaders\Definitions\Editor\jumpFloodInit.vtsdef
+  - Handle: 14160592251016723538
+    Path: Engine\Shaders\Definitions\Editor\jumpFloodPass.vtsdef
+  - Handle: 16417559759443988093
+    Path: Engine\Shaders\Definitions\Editor\selectedGeometry.vtsdef
+  - Handle: 9702081133491761613
+    Path: Engine\Shaders\Definitions\Environment\environmentIrradiance.vtsdef
+  - Handle: 2706504177761278277
+    Path: Engine\Shaders\Definitions\Environment\environmentMipFilter.vtsdef
+  - Handle: 11636202381083687569
+    Path: Engine\Shaders\Definitions\Environment\equirectangularToCubemap.vtsdef
+  - Handle: 4848095718427829070
+    Path: Engine\Shaders\Definitions\FXbasic_def.vtsdef
+  - Handle: 14956063400484439676
+    Path: Engine\Shaders\Definitions\FXdash_def.vtsdef
+  - Handle: 1843363617893731643
+    Path: Engine\Shaders\Definitions\FXfear_def.vtsdef
+  - Handle: 12490455344801673429
+    Path: Engine\Shaders\Definitions\FXrage_def.vtsdef
+  - Handle: 17532807152193820968
+    Path: Engine\Shaders\Definitions\FXranged_def.vtsdef
+  - Handle: 4908638690122038583
+    Path: Engine\Shaders\Definitions\FXswipe_def.vtsdef
+  - Handle: 1561116904564354952
+    Path: Engine\Shaders\Definitions\PostProcessing\GTAO\GTAO_DepthPrefilter.vtsdef
+  - Handle: 5506864068879686011
+    Path: Engine\Shaders\Definitions\PostProcessing\GTAO\GTAO_MainPass.vtsdef
+  - Handle: 6596220083066369672
+    Path: Engine\Shaders\Definitions\PostProcessing\bloomComposite.vtsdef
+  - Handle: 17915259395499634420
+    Path: Engine\Shaders\Definitions\PostProcessing\bloomDownsample.vtsdef
+  - Handle: 1062296822554349162
+    Path: Engine\Shaders\Definitions\PostProcessing\bloomDownsamplePS.vtsdef
+  - Handle: 6237637897275113807
+    Path: Engine\Shaders\Definitions\PostProcessing\bloomTest.vtsdef
+  - Handle: 8332391522679700428
+    Path: Engine\Shaders\Definitions\PostProcessing\bloomUpsamplePS.vtsdef
+  - Handle: 10104579203633618180
+    Path: Engine\Shaders\Definitions\PostProcessing\bloowUpsample.vtsdef
+  - Handle: 14505073270168439566
+    Path: Engine\Shaders\Definitions\Shadows\directionalShadow.vtsdef
+  - Handle: 12248734659475777920
+    Path: Engine\Shaders\Definitions\Utility\brdfGeneration.vtsdef
+  - Handle: 4966110509628871068
+    Path: Engine\Shaders\Definitions\Utility\copyTextureToTarget.vtsdef
+  - Handle: 10842674387699385724
+    Path: Engine\Shaders\Definitions\Utility\depthOnly.vtsdef
+  - Handle: 1166708707745010950
+    Path: Engine\Shaders\Definitions\Utility\hzb.vtsdef
+  - Handle: 17978378505488815861
+    Path: Engine\Shaders\Definitions\deferred.vtsdef
+  - Handle: 15758845023257461575
+    Path: Engine\Shaders\Definitions\deferredInstanced.vtsdef
+  - Handle: 12802166624525192422
+    Path: Engine\Shaders\Definitions\forwardPBR.vtsdef
+  - Handle: 1711972826371556708
+    Path: Engine\Shaders\Definitions\glow_def.vtsdef
+  - Handle: 12999339412297952142
+    Path: Engine\Shaders\Definitions\gopalDefinition.vtsdef
+  - Handle: 11459881294465198500
+    Path: Engine\Shaders\Definitions\grid.vtsdef
+  - Handle: 8843700120534531401
+    Path: Engine\Shaders\Definitions\shading.vtsdef
+  - Handle: 14072074372386687925
+    Path: Engine\Shaders\Definitions\simpleShader.vtsdef
+  - Handle: 12754983458410608843
+    Path: Engine\Shaders\Definitions\sprite.vtsdef
+  - Handle: 17902340727589200075
+    Path: Engine\Shaders\Definitions\swipeDefinition.vtsdef
+  - Handle: 3853327809697493580
+    Path: Engine\Textures\BRDF_LUT.dds

@@ -1,0 +1,4 @@
+name: "GTAO_MainPass"
+internal: true
+paths:
+  - "Engine/Shaders/HLSL/PostProcessing/GTAO/GTAO_MainPass_cs.hlsl"

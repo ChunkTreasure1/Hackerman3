@@ -1,0 +1,6 @@
+AnimatedCharacter:
+  skeleton: 15356186797594214973
+  skin: 15484814701155840749
+  animations:
+    - index: 0
+      animation: 5946903767252815180

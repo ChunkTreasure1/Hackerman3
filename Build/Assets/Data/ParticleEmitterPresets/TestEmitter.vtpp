@@ -1,0 +1,12 @@
+Emitter:
+  fade: true
+  emissiveness: 0
+  distance: 200
+  velocity: 50
+  intensity: 2000
+  shader: EntityGizmo
+  spread: 5
+  direction: [0, 0, 0]
+  gravity: [0, -1, 0]
+  color: [1, 0, 0, 1]
+  poolSize: 50000
