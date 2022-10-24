@@ -195,7 +195,7 @@ void Sandbox::OnScenePlay()
 	Volt::OnSceneLoadedEvent loadEvent{ myRuntimeScene };
 	Volt::Application::Get().OnEvent(loadEvent);
 
-	myGame = CreateRef<Game>();
+	myGame = CreateRef<Game>(myRuntimeScene.get());
 	myGame->OnStart();
 	myRuntimeScene->OnRuntimeStart();
 
@@ -761,6 +761,7 @@ bool Sandbox::OnUpdateEvent(Volt::AppUpdateEvent& e)
 
 		case SceneState::Play:
 			myRuntimeScene->Update(e.GetTimestep());
+			myGame->OnUpdate();
 
 			// AI
 			myNavigationsSystem->OnRuntimeUpdate(e.GetTimestep());

@@ -10,13 +10,14 @@
 
 void GameLayer::OnAttach()
 {
-	myScene = Volt::AssetManager::GetAsset<Volt::Scene>("Assets/Levels/MainMenu/MainMenu.vtscene");
+	myScene = Volt::AssetManager::GetAsset<Volt::Scene>("Assets/Levels/AILevel/AILevel.vtscene");
 	mySceneRenderer = CreateRef<Volt::SceneRenderer>(myScene);
 }
 
 void GameLayer::OnDetach()
 {
 	myScene->OnRuntimeEnd();
+	myGame->OnStop();
 
 	mySceneRenderer = nullptr;
 	myScene = nullptr;
@@ -35,6 +36,8 @@ void GameLayer::OnEvent(Volt::Event & e)
 
 void GameLayer::LoadStartScene()
 {
+	myGame = CreateRef<Game>(myScene.get());
+	myGame->OnStart();
 	myScene->OnRuntimeStart();
 	Volt::OnScenePlayEvent playEvent{};
 	Volt::Application::Get().OnEvent(playEvent);

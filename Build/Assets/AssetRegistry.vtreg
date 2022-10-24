@@ -133,6 +133,8 @@ Assets:
     Path: Assets\Data\ParticleEmitterPresets\DefaultEmitterPreset2.vtpp
   - Handle: 11410513602613187384
     Path: Assets\Data\ParticleEmitterPresets\TestEmitter.vtpp
+  - Handle: 7059297128470962636
+    Path: Assets\Levels\AILevel\AILevel.vtscene
   - Handle: 14528881027857296121
     Path: Assets\Levels\AlphaPlayTestLevel\AlphaPlayTest.vtscene
   - Handle: 9575460255193287647
@@ -185,6 +187,8 @@ Assets:
     Path: Assets\Materials\M_FullMetal.vtmat
   - Handle: 3262013129320796154
     Path: Assets\Materials\M_New_Material.vtmat
+  - Handle: 10486296791588823129
+    Path: Assets\Materials\M_Pink.vtmat
   - Handle: 11005017939171232467
     Path: Assets\Meshes\Chest\SM_Particle_Chest.vtmat
   - Handle: 13441708278441417907
@@ -195,6 +199,10 @@ Assets:
     Path: Assets\Meshes\Chest\T_Particle_Chest_m.dds
   - Handle: 10354356358518198948
     Path: Assets\Meshes\Chest\T_Particle_Chest_n.dds
+  - Handle: 1857740381600512513
+    Path: Assets\Meshes\Compter\Compter.vtmat
+  - Handle: 4393378284674221450
+    Path: Assets\Meshes\Compter\Compter.vtmesh
   - Handle: 538622872540361137
     Path: Assets\Meshes\Cube\cube.vtmat
   - Handle: 12081153960880872276

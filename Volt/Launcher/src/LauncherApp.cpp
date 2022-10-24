@@ -23,6 +23,7 @@ public:
 	{
 		GameLayer* game = new GameLayer();
 		PushLayer(game);
+		PushLayer(new FinalLayer(game->GetSceneRenderer()));
 		game->LoadStartScene();
 	}
 
