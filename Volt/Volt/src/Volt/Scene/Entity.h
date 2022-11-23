@@ -91,6 +91,7 @@ namespace Volt
 		Entity& operator=(const Entity& entity);
 
 		inline bool operator==(const Entity& entity) const { return myId == entity.myId; }
+		inline bool operator<(const Entity& entity) const { return myId < entity.myId; }
 		inline bool operator!() const { return IsNull(); }
 		inline explicit operator bool() const { return !IsNull(); }
 

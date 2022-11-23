@@ -2,6 +2,8 @@
 
 #include "Core.h"
 
+#include "Game/AI-U4/PollingStationU4.h"
+
 #include <Volt/Core/Base.h>
 
 namespace Volt
@@ -24,6 +26,7 @@ public:
 private:
 	Ref<AIEventManager> myAIEventManager;
 	Ref<PollingStation> myPollingStation;
+	Ref<PollingStationU4> myPollingStationU4;
 
 	Volt::Scene* myScene;
 };

@@ -135,6 +135,8 @@ Assets:
     Path: Assets\Data\ParticleEmitterPresets\TestEmitter.vtpp
   - Handle: 7059297128470962636
     Path: Assets\Levels\AILevel\AILevel.vtscene
+  - Handle: 7726427594505874425
+    Path: Assets\Levels\AIU4Level\AIU4Level.vtscene
   - Handle: 14528881027857296121
     Path: Assets\Levels\AlphaPlayTestLevel\AlphaPlayTest.vtscene
   - Handle: 9575460255193287647
@@ -179,12 +181,16 @@ Assets:
     Path: Assets\Materials\Calibration\M_Calibration_DarkGrey.vtmat
   - Handle: 6994545178141216766
     Path: Assets\Materials\Calibration\M_Calibration_LightGrey.vtmat
+  - Handle: 6371204910474614765
+    Path: Assets\Materials\M_Bloom2.vtmat
   - Handle: 16774146042086532435
     Path: Assets\Materials\M_BloomTest.vtmat
   - Handle: 6701997475428687788
     Path: Assets\Materials\M_ColliderDebug.vtmat
   - Handle: 6591816951260738065
     Path: Assets\Materials\M_FullMetal.vtmat
+  - Handle: 9787900239293746127
+    Path: Assets\Materials\M_NewMaterial.vtmat
   - Handle: 3262013129320796154
     Path: Assets\Materials\M_New_Material.vtmat
   - Handle: 10486296791588823129

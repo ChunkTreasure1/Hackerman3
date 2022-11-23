@@ -1,17 +1,14 @@
 #pragma once
 
+#include <Volt/Scene/Entity.h>
+
 #include <GEM/gem.h>
+#include <vector>
 
 namespace Volt
 {
 	class Scene;
 }
-
-struct HackPollResult
-{
-	gem::vec3 target = { 0.f };
-	bool isHacked = false;
-};
 
 class PollingStation
 {
@@ -21,12 +18,15 @@ public:
 
 	void Update(float aDeltaTime);
 
-	const HackPollResult& PollIsBeingHacked() const;
+	const gem::vec3& PollTargetPosition() const;
+	inline const std::vector<Volt::Entity>& PollControllerPositions() const { return myControllerPostitions; }
+
 	inline static const PollingStation& Get() { return *myInstance; }
 
 private:
 	inline static PollingStation* myInstance;
 	Volt::Scene* myScene;
 
-	HackPollResult myCurrentHackResult;
+	gem::vec3 myTargetPosition;
+	std::vector<Volt::Entity> myControllerPostitions;
 };

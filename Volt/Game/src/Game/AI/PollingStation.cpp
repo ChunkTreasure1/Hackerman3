@@ -1,6 +1,8 @@
 #include "PollingStation.h"
 
-#include "CompterScript.h"
+#include "WanderController.h"
+#include "SeekController.h"
+#include "SeparationController.h"
 
 #include <Volt/Scene/Scene.h>
 #include <Volt/Core/Base.h>
@@ -11,6 +13,8 @@ PollingStation::PollingStation(Volt::Scene* scene)
 {
 	VT_CORE_ASSERT(myInstance == nullptr, "Instance already exists!");
 	myInstance = this;
+
+	myControllerPostitions.reserve(20);
 }
 
 PollingStation::~PollingStation()
@@ -21,23 +25,26 @@ PollingStation::~PollingStation()
 void PollingStation::Update(float aDeltaTime)
 {
 	bool changed = false;
-	myScene->GetRegistry().ForEach<CompterComponent, Volt::TransformComponent>([&](Wire::EntityId id, const CompterComponent& comp, const Volt::TransformComponent& transComp) 
-		{
-			if (comp.isPlayerInTrigger)
-			{
-				changed = true;
-				myCurrentHackResult.isHacked = true;
-				myCurrentHackResult.target = transComp.position;
-			}
+	myControllerPostitions.clear();
 
-			if (!changed)
-			{
-				myCurrentHackResult.isHacked = false;
-			}
+	myScene->GetRegistry().ForEach<WanderControllerComponent, Volt::TransformComponent>([&](Wire::EntityId id, const WanderControllerComponent& comp, const Volt::TransformComponent& transComp)
+		{
+			myTargetPosition = transComp.position;
+			myControllerPostitions.emplace_back(Volt::Entity{ id, myScene });
+		});
+
+	myScene->GetRegistry().ForEach<SeekControllerComponent, Volt::TransformComponent>([&](Wire::EntityId id, const SeekControllerComponent& comp, const Volt::TransformComponent& transComp) 
+		{
+			myControllerPostitions.emplace_back(Volt::Entity{ id, myScene });
+		});
+
+	myScene->GetRegistry().ForEach<SeperationControllerComponent, Volt::TransformComponent>([&](Wire::EntityId id, const SeperationControllerComponent& comp, const Volt::TransformComponent& transComp)
+		{
+			myControllerPostitions.emplace_back(Volt::Entity{ id, myScene });
 		});
 }
 
-const HackPollResult& PollingStation::PollIsBeingHacked() const
+const gem::vec3& PollingStation::PollTargetPosition() const
 {
-	return myCurrentHackResult;
+	return myTargetPosition;
 }

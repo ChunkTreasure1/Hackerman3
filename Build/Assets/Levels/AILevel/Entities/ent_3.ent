@@ -52,4 +52,4 @@ Entity:
         - type: 7
           vectorType: 13
           name: Intensity
-          data: 1
+          data: 0.0399999991

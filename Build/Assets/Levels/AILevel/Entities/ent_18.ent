@@ -1,5 +1,5 @@
 Entity:
-  id: 8
+  id: 18
   components:
     - guid: [5241627842114713378, 11179844935521484427]
       properties:
@@ -10,7 +10,7 @@ Entity:
         - type: 2
           vectorType: 13
           name: Layer ID
-          data: 0
+          data: 1
         - type: 7
           vectorType: 13
           name: Mass
@@ -26,7 +26,7 @@ Entity:
         - type: 0
           vectorType: 13
           name: Disable Graivity
-          data: false
+          data: true
         - type: 0
           vectorType: 13
           name: Is Kinematic
@@ -44,7 +44,7 @@ Entity:
         - type: 12
           vectorType: 13
           name: Tag
-          data: Player
+          data: Seeker
     - guid: [5272442441707063634, 16349525528562408586]
       properties:
         - type: 7
@@ -62,17 +62,17 @@ Entity:
         - type: 0
           vectorType: 13
           name: Is Trigger
-          data: false
+          data: true
         - type: 16
           vectorType: 13
           name: Physics Material
-          data: 0
+          data: 4413440
     - guid: [5152712443922219371, 10617432012782403218]
       properties:
         - type: 10
           vectorType: 13
           name: Position
-          data: [0, 148.573914, -5.35610962]
+          data: [-530.674805, 149.532501, 11.8960876]
         - type: 10
           vectorType: 13
           name: Rotation
@@ -95,7 +95,9 @@ Entity:
           vectorType: 22
           name: Children
           data:
-            []
+            - value: 19
+            - value: 20
+            - value: 21
         - type: 22
           vectorType: 13
           name: Parent
@@ -112,7 +114,7 @@ Entity:
         - type: 16
           vectorType: 13
           name: Material
-          data: 10486296791588823129
+          data: 6591816951260738065
         - type: 0
           vectorType: 13
           name: Walkable
@@ -123,4 +125,10 @@ Entity:
           vectorType: 23
           name: Scripts
           data:
-            - value: [5605317341189798158, 6295114070130621086]
+            - value: [5619096790133693913, 11626671868660851388]
+    - guid: [4771033257801764495, 13509037833181304222]
+      properties:
+        - type: 7
+          vectorType: 13
+          name: Speed
+          data: 700

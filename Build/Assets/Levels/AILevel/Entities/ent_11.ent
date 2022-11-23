@@ -6,21 +6,21 @@ Entity:
         - type: 12
           vectorType: 13
           name: Tag
-          data: Robot
+          data: New Entity
     - guid: [5152712443922219371, 10617432012782403218]
       properties:
         - type: 10
           vectorType: 13
           name: Position
-          data: [1340.49561, 148.57402, 1329.19067]
+          data: [0, 47.8123169, 87.6445923]
         - type: 10
           vectorType: 13
           name: Rotation
-          data: [0, 0, 0]
+          data: [1.57079625, 0, 0]
         - type: 10
           vectorType: 13
           name: Scale
-          data: [1, 1, 1]
+          data: [0.100000024, 0.477328986, 0.0999999121]
         - type: 0
           vectorType: 13
           name: "Visible "
@@ -39,7 +39,7 @@ Entity:
         - type: 22
           vectorType: 13
           name: Parent
-          data: 0
+          data: 10
     - guid: [5115013315947959062, 13305215203298195585]
       properties:
         []
@@ -52,21 +52,8 @@ Entity:
         - type: 16
           vectorType: 13
           name: Material
-          data: 6591816951260738065
+          data: 16774146042086532435
         - type: 0
           vectorType: 13
           name: Walkable
-          data: true
-    - guid: [5181037046415192703, 2844406606148408476]
-      properties:
-        - type: 21
-          vectorType: 23
-          name: Scripts
-          data:
-            - value: [5525484397751995865, 12643481388077656245]
-    - guid: [5687933522862072976, 11466249719383859354]
-      properties:
-        - type: 0
-          vectorType: 13
-          name: Is Poll Based
           data: true

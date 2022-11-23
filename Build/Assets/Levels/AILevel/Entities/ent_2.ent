@@ -48,7 +48,7 @@ Entity:
         - type: 7
           vectorType: 13
           name: Intensity
-          data: 1
+          data: 0.0500000007
         - type: 17
           vectorType: 13
           name: Color

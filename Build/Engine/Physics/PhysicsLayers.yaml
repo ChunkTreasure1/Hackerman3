@@ -5,15 +5,15 @@ PhysicsLayers:
     name: Default
   - layerId: 1
     bitValue: 2
-    collidesWith: 8
+    collidesWith: 2
     name: PlayerFearAbility
   - layerId: 2
     bitValue: 4
-    collidesWith: 72
+    collidesWith: 8
     name: PlayerAbility
   - layerId: 3
     bitValue: 8
-    collidesWith: 7
+    collidesWith: 5
     name: Enemy
   - layerId: 4
     bitValue: 16
@@ -25,7 +25,7 @@ PhysicsLayers:
     name: EnemyHitbox
   - layerId: 6
     bitValue: 64
-    collidesWith: 4
+    collidesWith: 0
     name: Destructable
   - layerId: 7
     bitValue: 128
