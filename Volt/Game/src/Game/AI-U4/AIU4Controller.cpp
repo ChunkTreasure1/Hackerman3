@@ -3,6 +3,7 @@
 #include "Game/AI-U4/PollingStationU4.h"
 
 #include <Volt/Components/Components.h>
+#include <Volt/Utility/Random.h>
 
 #include <numeric>
 
@@ -14,6 +15,7 @@ AIU4Controller::AIU4Controller(Volt::Entity entity)
 
 void AIU4Controller::OnStart()
 {
+	myCurrentVelocity = { Volt::Random::Float(-3000.f, 3000.f), 0.f, Volt::Random::Float(-3000.f, 3000.f) };
 }
 
 void AIU4Controller::OnUpdate(float aDeltaTime)
@@ -23,16 +25,14 @@ void AIU4Controller::OnUpdate(float aDeltaTime)
 	auto sepResult = SeparationBehaviour(aDeltaTime);
 	auto cohesResult = CohesionBehaviour(aDeltaTime);
 	auto velResult = VelocityMatchingResult(aDeltaTime);
+	auto wanderResult = WanderBehaviour(aDeltaTime);
 
-	float weighth1 = (aiComp.separationWeight + aiComp.cohesionWeight) ;
-	
-	gem::vec3 velocityResult = (sepResult.velocity * aiComp.separationWeight + cohesResult.velocity * aiComp.cohesionWeight + velResult.velocity * aiComp.velocityWeight);
+	gem::vec3 velocityResult = (sepResult.velocity * aiComp.separationWeight + cohesResult.velocity * aiComp.cohesionWeight + velResult.velocity * aiComp.velocityWeight + wanderResult.velocity * aiComp.wanderWeight);
 	velocityResult.y = 0.f;
 
 	myEntity.SetPosition(myEntity.GetPosition() + velocityResult * aDeltaTime);
 
-	auto rot = gem::eulerAngles(gem::quatLookAt(gem::normalize(velocityResult), { 0.f, 1.f, 0.f }));
-	myEntity.SetRotation({ 0.f, rot.y, 0.f });
+	myCurrentVelocity = velocityResult;
 
 	auto currPos = myEntity.GetPosition();
 	if (currPos.x > 2500.f)
@@ -94,12 +94,14 @@ const AIU4Controller::BehaviourResult AIU4Controller::CohesionBehaviour(float aD
 	const auto& aiComp = myEntity.GetComponent<AIU4ControllerComponent>();
 	const auto& controllerEntities = PollingStationU4::Get().PollControllerPositions();
 
-	std::set<Volt::Entity> entitiesInFlock;
-	RecursiveCohesionSearch(myEntity, entitiesInFlock);
-
-	if (entitiesInFlock.size() == 1)
+	std::vector<Volt::Entity> entitiesInFlock;
+	for (const auto& other : controllerEntities)
 	{
-		return FindNearestEntity(myEntity);
+		const float distance = gem::distance(myEntity.GetPosition(), other.GetPosition());
+		if (other != myEntity && distance < aiComp.cohesionThreshold)
+		{
+			entitiesInFlock.emplace_back(other);
+		}
 	}
 
 	gem::vec3 midPoint = 0.f;
@@ -108,19 +110,71 @@ const AIU4Controller::BehaviourResult AIU4Controller::CohesionBehaviour(float aD
 		midPoint += { ent.GetPosition().x, 0.f, ent.GetPosition().z };
 	}
 
+	if (entitiesInFlock.empty())
+	{
+		return {};
+	}
+
 	midPoint /= (float)entitiesInFlock.size();
 
 	BehaviourResult result{};
-	result.velocity = gem::normalize(midPoint - myEntity.GetPosition()) * aiComp.maxSpeed;
+	result.velocity = (midPoint - myEntity.GetPosition());
 
 	return result;
 }
 
 const AIU4Controller::BehaviourResult AIU4Controller::VelocityMatchingResult(float aDeltaTime)
 {
+	auto& controllerEntities = PollingStationU4::Get().PollControllerPositions();
+	const auto& aiComp = myEntity.GetComponent<AIU4ControllerComponent>();
 
+	gem::vec3 avgVelocity = 0.f;
+	uint32_t count = 0;
 
-	return BehaviourResult();
+	for (auto& ent : controllerEntities)
+	{
+		const float dist = gem::distance(ent.GetPosition(), myEntity.GetPosition());
+
+		if (dist < aiComp.cohesionThreshold)
+		{
+			avgVelocity += ent.GetScript<AIU4Controller>("AIU4Controller")->myCurrentVelocity;
+			count++;
+		}
+	}
+
+	if (count > 0)
+	{
+		avgVelocity /= (float)count;
+	}
+
+	BehaviourResult result{};
+	result.velocity = (avgVelocity - myCurrentVelocity);
+
+	return result;
+}
+
+const AIU4Controller::BehaviourResult AIU4Controller::WanderBehaviour(float aDeltaTime)
+{
+	const auto& wanderComp = myEntity.GetComponent<AIU4ControllerComponent>();
+
+	if (myTimer <= 0.f)
+	{
+		myTimer = wanderComp.cooldown;
+
+		myTargetYRotation = myEntity.GetRotation().y + gem::radians(Volt::Random::Float(wanderComp.minRotation, wanderComp.maxRotation));
+	}
+	else
+	{
+		myTimer -= aDeltaTime;
+	}
+
+	const float rotDir = myEntity.GetRotation().y - myTargetYRotation > 0 ? 1.f : -1.f;
+	myEntity.SetRotation({ 0.f, myEntity.GetRotation().y + gem::radians(45.f) * rotDir * aDeltaTime, 0.f });
+
+	BehaviourResult result{};
+	result.velocity = myEntity.GetForward() * wanderComp.maxWanderSpeed * aDeltaTime;
+
+	return result;
 }
 
 void AIU4Controller::RecursiveCohesionSearch(Volt::Entity entity, std::set<Volt::Entity>& outEntities)

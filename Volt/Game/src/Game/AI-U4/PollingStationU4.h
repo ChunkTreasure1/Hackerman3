@@ -19,9 +19,9 @@ public:
 	void Update(float aDeltaTime);
 
 	const gem::vec3& PollTargetPosition() const;
-	inline const std::vector<Volt::Entity>& PollControllerPositions() const { return myControllerPostitions; }
+	inline std::vector<Volt::Entity>& PollControllerPositions() { return myControllerPostitions; }
 
-	inline static const PollingStationU4& Get() { return *myInstance; }
+	inline static PollingStationU4& Get() { return *myInstance; }
 
 private:
 	inline static PollingStationU4* myInstance;
