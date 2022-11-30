@@ -12,15 +12,15 @@ Entity:
         - type: 10
           vectorType: 13
           name: Position
-          data: [0, 706.526794, -2834.17554]
+          data: [0, 4401.40625, -105]
         - type: 10
           vectorType: 13
           name: Rotation
-          data: [0, 0, 0]
+          data: [1.57097089, -1.57079637, 0]
         - type: 10
           vectorType: 13
           name: Scale
-          data: [1, 1, 1]
+          data: [1, 0.99999994, 0.99999994]
         - type: 0
           vectorType: 13
           name: "Visible "
@@ -48,7 +48,7 @@ Entity:
         - type: 7
           vectorType: 13
           name: Field of View
-          data: 60
+          data: 87
         - type: 7
           vectorType: 13
           name: Near plane

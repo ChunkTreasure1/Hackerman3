@@ -14,6 +14,7 @@ void Game::OnStart()
 	myAIEventManager = CreateRef<AIEventManager>();
 	myPollingStation = CreateRef<PollingStation>(myScene);
 	myPollingStationU4 = CreateRef<PollingStationU4>(myScene);
+	myPollingStationU5 = CreateRef<PollingStationU5>(myScene);
 }
 
 void Game::OnStop()
@@ -21,6 +22,7 @@ void Game::OnStop()
 	myAIEventManager = nullptr;
 	myPollingStation = nullptr;
 	myPollingStationU4 = nullptr;
+	myPollingStationU5 = nullptr;
 	myScene = nullptr;
 }
 
@@ -28,4 +30,5 @@ void Game::OnUpdate()
 {
 	myPollingStation->Update(0.f);
 	myPollingStationU4->Update(0.f);
+	myPollingStationU5->Update(0.f);
 }

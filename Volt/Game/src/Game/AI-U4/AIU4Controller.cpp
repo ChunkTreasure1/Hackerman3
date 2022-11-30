@@ -15,7 +15,7 @@ AIU4Controller::AIU4Controller(Volt::Entity entity)
 
 void AIU4Controller::OnStart()
 {
-	myCurrentVelocity = { Volt::Random::Float(-3000.f, 3000.f), 0.f, Volt::Random::Float(-3000.f, 3000.f) };
+	myCurrentVelocity = { Volt::Random::Float(-500.f, 500.f), 0.f, Volt::Random::Float(-500.f, 500.f) };
 }
 
 void AIU4Controller::OnUpdate(float aDeltaTime)
@@ -27,29 +27,36 @@ void AIU4Controller::OnUpdate(float aDeltaTime)
 	auto velResult = VelocityMatchingResult(aDeltaTime);
 	auto wanderResult = WanderBehaviour(aDeltaTime);
 
-	gem::vec3 velocityResult = (sepResult.velocity * aiComp.separationWeight + cohesResult.velocity * aiComp.cohesionWeight + velResult.velocity * aiComp.velocityWeight + wanderResult.velocity * aiComp.wanderWeight);
+	gem::vec3 velocityResult = (sepResult.velocity * aiComp.separationWeight + cohesResult.velocity * aiComp.cohesionWeight + velResult.velocity * aiComp.velocityWeight /*+ wanderResult.velocity * aiComp.wanderWeight*/);
 	velocityResult.y = 0.f;
 
-	myEntity.SetPosition(myEntity.GetPosition() + velocityResult * aDeltaTime);
+	myCurrentVelocity += velocityResult;
 
-	myCurrentVelocity = velocityResult;
+	const float speed = gem::length(myCurrentVelocity);
+	if (speed > aiComp.maxSpeed2)
+	{
+		myCurrentVelocity.x = (myCurrentVelocity.x / speed) * aiComp.maxSpeed2;
+		myCurrentVelocity.z = (myCurrentVelocity.z / speed) * aiComp.maxSpeed2;
+	}
+
+	myEntity.SetPosition(myEntity.GetPosition() + myCurrentVelocity * aDeltaTime);
 
 	auto currPos = myEntity.GetPosition();
-	if (currPos.x > 2500.f)
+	if (currPos.x > 4000.f)
 	{
-		myEntity.SetPosition({ -2500.f, currPos.y, currPos.z });
+		myEntity.SetPosition({ -4000.f, currPos.y, currPos.z });
 	}
-	else if (currPos.x < -2500.f)
+	else if (currPos.x < -4000.f)
 	{
-		myEntity.SetPosition({ 2500.f, currPos.y, currPos.z });
+		myEntity.SetPosition({ 4000.f, currPos.y, currPos.z });
 	}
-	else if (currPos.z > 2500.f)
+	else if (currPos.z > 6000.f)
 	{
-		myEntity.SetPosition({ currPos.x, currPos.y, -2500.f });
+		myEntity.SetPosition({ currPos.x, currPos.y, -6000.f });
 	}
-	else if (currPos.z < -2500.f)
+	else if (currPos.z < -6000.f)
 	{
-		myEntity.SetPosition({ currPos.x, currPos.y, 2500.f });
+		myEntity.SetPosition({ currPos.x, currPos.y, 6000.f });
 	}
 
 	// lerp i lerp i lerp gameplay stuff

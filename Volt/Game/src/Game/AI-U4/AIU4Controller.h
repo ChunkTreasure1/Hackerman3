@@ -13,6 +13,7 @@ SERIALIZE_COMPONENT((struct AIU4ControllerComponent
 	PROPERTY(Name = Separation Threshold) float separationThreshold = 500.f;
 	PROPERTY(Name = Cohesion Threshold) float cohesionThreshold = 700.f;
 	PROPERTY(Name = Max Speed) float maxSpeed = 500.f;
+	PROPERTY(Name = Max SpeedTwo) float maxSpeed2 = 500.f;
 	PROPERTY(Name = Max Wander Speed) float maxWanderSpeed = 500.f;
 
 	PROPERTY(Name = Time To Target) float timeToTarget = 0.1;

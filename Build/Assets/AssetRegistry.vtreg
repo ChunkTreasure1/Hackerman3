@@ -175,6 +175,8 @@ Assets:
     Path: Assets\Levels\SC_Test\SC_Test.vtscene
   - Handle: 8801929576128948257
     Path: Assets\Levels\ShadowTest\ShadowTest.vtscene
+  - Handle: 360561797382820674
+    Path: Assets\Levels\U5Level\U5Level.vtscene
   - Handle: 16872429381298271138
     Path: Assets\M_NewMaterial
   - Handle: 2621764857210508945
@@ -231,6 +233,10 @@ Assets:
     Path: Assets\Meshes\Frog\frog.vtmat
   - Handle: 17035498398125546881
     Path: Assets\Meshes\Frog\frog.vtmesh
+  - Handle: 16253768636013707578
+    Path: Assets\Meshes\Gubb\gubb.vtmat
+  - Handle: 14964636930618015903
+    Path: Assets\Meshes\Gubb\gubb.vtmesh
   - Handle: 5843414791827486765
     Path: Assets\Meshes\M_New_Material.vtmat
   - Handle: 6012346265820869196

@@ -20,7 +20,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Scale
-          data: [50, 1, 50]
+          data: [80, 1, 130]
         - type: 0
           vectorType: 13
           name: "Visible "

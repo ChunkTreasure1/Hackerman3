@@ -12,7 +12,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Position
-          data: [-833.865234, 95.3068771, 1455.59387]
+          data: [213.81427, 95.3068771, 1420.45142]
         - type: 10
           vectorType: 13
           name: Rotation
@@ -62,15 +62,15 @@ Entity:
         - type: 7
           vectorType: 13
           name: Separation Weight
-          data: 0.25
+          data: 0.0500000007
         - type: 7
           vectorType: 13
           name: Cohesion Weight
-          data: 0.25
+          data: 0.00499999989
         - type: 7
           vectorType: 13
           name: Velocity Weight
-          data: 0.25
+          data: 0.0500000007
         - type: 7
           vectorType: 13
           name: Wander Weight
@@ -87,6 +87,14 @@ Entity:
           vectorType: 13
           name: Max Speed
           data: 2000
+        - type: 7
+          vectorType: 13
+          name: Max SpeedTwo
+          data: 1000
+        - type: 7
+          vectorType: 13
+          name: Max Wander Speed
+          data: 500
         - type: 7
           vectorType: 13
           name: Time To Target

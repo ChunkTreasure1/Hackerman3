@@ -67,6 +67,12 @@ namespace gem
 			x.x * y.y - y.x * x.y);
 	};
 
+	template<typename T = float>
+	vec<3, T> reflect(const vec<3, T>& i, const vec<3, T>& n)
+	{
+		return i - n * dot(n, i) * static_cast<T>(2);
+	}
+
 	template<size_t L, typename T = float>
 	vec<L, T> normalize(const vec<L, T>& x)
 	{
