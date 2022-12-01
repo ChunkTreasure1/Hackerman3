@@ -13,6 +13,10 @@ State& StateMachine::AddState()
 void StateMachine::SetStartState(uint32_t index)
 {
 	myCurrentState = myStates.at(index).get();
+	if (myCurrentState->onEnter)
+	{
+		myCurrentState->onEnter();
+	}
 }
 
 void StateMachine::Update(float aDeltaTime)

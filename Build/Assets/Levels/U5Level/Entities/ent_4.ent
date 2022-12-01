@@ -113,3 +113,12 @@ Entity:
           vectorType: 13
           name: Walkable
           data: true
+    - guid: [5263508441546948595, 7242011014789895856]
+      properties:
+        []
+    - guid: [5643278339155665755, 5065944822186435496]
+      properties:
+        - type: 7
+          vectorType: 13
+          name: Health
+          data: 100

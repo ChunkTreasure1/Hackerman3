@@ -12,6 +12,9 @@ SERIALIZE_COMPONENT((struct AIU5StateActorComponent
 	PROPERTY(Name = Whisker Angle) float whiskarAngle = 60.f;
 	PROPERTY(Name = Turning Speed) float turningSpeed = 10.f;
 
+	PROPERTY(Name = Fire Rate) float fireRate = 0.5f;
+	PROPERTY(Name = Shoot Distance) float shootDistance = 2000.f;
+
 	CREATE_COMPONENT_GUID("{2E18C468-0ADA-4A88-B0AB-2B93ECCD177D}"_guid);
 }), AIU5StateActorComponent);
 
@@ -28,8 +31,7 @@ public:
 	WireGUID GetGUID() override { return GetStaticGUID(); }
 
 private:
-	Scope<StateMachine> myStateMachine;
+	void ShootBullet(const gem::vec3& direction, const float speed);
 
-	bool myIsTurning = false;
-	float myTurningDirection = 0.f;
+	Scope<StateMachine> myStateMachine;
 };

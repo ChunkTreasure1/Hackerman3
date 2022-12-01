@@ -72,11 +72,11 @@ Entity:
         - type: 10
           vectorType: 13
           name: Rotation
-          data: [0, 1.57079637, 0]
+          data: [-3.14159274, 1.57079637, -3.14159274]
         - type: 10
           vectorType: 13
           name: Scale
-          data: [0.999952197, 1, 0.999952197]
+          data: [0.999951541, 1, 0.999951541]
         - type: 0
           vectorType: 13
           name: "Visible "
@@ -122,19 +122,33 @@ Entity:
         - type: 7
           vectorType: 13
           name: Max Side Distance
-          data: 800
+          data: 1100
         - type: 7
           vectorType: 13
           name: Speed
-          data: 500
+          data: 1000
         - type: 7
           vectorType: 13
           name: Whisker Angle
-          data: 45
+          data: 50
         - type: 7
           vectorType: 13
           name: Turning Speed
           data: 1
+        - type: 7
+          vectorType: 13
+          name: Fire Rate
+          data: 0.5
+        - type: 7
+          vectorType: 13
+          name: Shoot Distance
+          data: 10000
+    - guid: [5643278339155665755, 5065944822186435496]
+      properties:
+        - type: 7
+          vectorType: 13
+          name: Health
+          data: 100
     - guid: [5181037046415192703, 2844406606148408476]
       properties:
         - type: 21

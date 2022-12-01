@@ -5,10 +5,14 @@
 
 PollingStationU5::PollingStationU5(Volt::Scene* scene)
 	: myScene(scene)
-{}
+{
+	myInstance = this;
+}
 
 PollingStationU5::~PollingStationU5()
-{}
+{
+	myInstance = nullptr;
+}
 
 void PollingStationU5::Update(float aDeltaTime)
 {
