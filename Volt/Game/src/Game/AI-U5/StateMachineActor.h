@@ -26,12 +26,16 @@ public:
 	void OnStart() override;
 	void OnUpdate(float aDeltaTime) override;
 
+	bool IsHurt();
+	const gem::vec3 FindClosestHealthWell();
+
 	static Ref<ScriptBase> Create(Volt::Entity aEntity) { return CreateRef<StateMachineActor>(aEntity); }
 	static WireGUID GetStaticGUID() { return "{5E3DCF3E-690E-4CB7-806B-231BCC1270E0}"_guid; };
 	WireGUID GetGUID() override { return GetStaticGUID(); }
 
 private:
 	void ShootBullet(const gem::vec3& direction, const float speed);
+	bool myIsOnHealthWell = false;
 
 	Scope<StateMachine> myStateMachine;
 };

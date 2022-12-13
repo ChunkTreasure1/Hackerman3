@@ -28,7 +28,7 @@ namespace Volt
 		constexpr bool trackMemoryAllocations = false;
 #endif
 
-		myPhysXData->physxSDK = PxCreatePhysics(PX_PHYSICS_VERSION, *myPhysXData->physxFoundation, scale, trackMemoryAllocations);
+		myPhysXData->physxSDK = PxCreatePhysics(PX_PHYSICS_VERSION, *myPhysXData->physxFoundation, scale, trackMemoryAllocations, PhysXDebugger::GetDebugger());
 		VT_CORE_ASSERT(myPhysXData->physxSDK, "PxCreatePhysics failed!");
 
 		bool extensionsLoaded = PxInitExtensions(*myPhysXData->physxSDK, PhysXDebugger::GetDebugger());

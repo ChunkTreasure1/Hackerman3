@@ -8,10 +8,12 @@ class BulletScript : public Volt::ScriptBase
 public:
 	BulletScript(Volt::Entity entity);
 
+	void OnAwake() override;
 	void OnCollisionEnter(Volt::Entity entity) override;
 
+
 	static Ref<ScriptBase> Create(Volt::Entity aEntity) { return CreateRef<BulletScript>(aEntity); }
-	static WireGUID GetStaticGUID() { return "{9FED3102-C830-4CE7-8F0E-430EFF3813BE}"_guid; };
+	static WireGUID GetStaticGUID() { return "{D768DA92-9D4E-4A53-A6CE-1E9F9615A358}"_guid; };
 	WireGUID GetGUID() override { return GetStaticGUID(); }
 
 private:

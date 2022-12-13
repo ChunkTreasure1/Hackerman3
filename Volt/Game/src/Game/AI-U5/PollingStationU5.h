@@ -14,7 +14,7 @@ SERIALIZE_COMPONENT((struct AIU5HealthComponent
 {
 	PROPERTY(Name = Health) float health = 100.f;
 
-	float currentHealth = 0.f;
+	PROPERTY(Name = Current Health, Serializable = false) float currentHealth = 0.f;
 
 	CREATE_COMPONENT_GUID("{0607A35B-F3C0-4E50-A8E3-26AAF9D94D46}"_guid);
 }), AIU5HealthComponent);

@@ -2,6 +2,7 @@
 
 #include "PollingStationU5.h"
 #include "DecisionTreeActor.h"
+#include "HealthWellScript.h"
 
 #include <Volt/Components/Components.h>
 #include <Volt/Components//PhysicsComponents.h>
@@ -40,7 +41,7 @@ void StateMachineActor::OnStart()
 
 			// Forward whisker
 			{
-				if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), gem::normalize(myEntity.GetForward()), comp.maxForwardDistance, &forwardHit, 1))
+				if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), gem::normalize(myEntity.GetForward()), comp.maxForwardDistance, &forwardHit, 0))
 				{
 					hitWall = true;
 				}
@@ -68,7 +69,7 @@ void StateMachineActor::OnStart()
 					const gem::vec3 direction = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, -comp.whiskarAngle, 0.f }), myEntity.GetForward()));
 
 					Volt::RaycastHit hit;
-					if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), direction, comp.maxSideDistance, &hit, 1))
+					if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), direction, comp.maxSideDistance, &hit, 0))
 					{
 						leftHit = true;
 					}
@@ -81,7 +82,7 @@ void StateMachineActor::OnStart()
 					const gem::vec3 direction = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, comp.whiskarAngle, 0.f }), myEntity.GetForward()));
 
 					Volt::RaycastHit hit;
-					if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), direction, comp.maxSideDistance, &hit, 1))
+					if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), direction, comp.maxSideDistance, &hit, 0))
 					{
 						rightHit = true;
 					}
@@ -134,6 +135,16 @@ void StateMachineActor::OnStart()
 					{
 						return 1;
 					}
+				}
+
+				return -1;
+			});
+
+		state.transitions.emplace_back([&]()
+			{
+				if (IsHurt())
+				{
+					return 2;
 				}
 
 				return -1;
@@ -198,7 +209,7 @@ void StateMachineActor::OnStart()
 				const float timeSinceShot = std::any_cast<float>(state.blackboard.at("TimeSinceShot"));
 				if (timeSinceShot > 1.f / comp.fireRate)
 				{
-					ShootBullet(direction, 2000.f + comp.speed);
+					ShootBullet(direction, 200000.f + comp.speed);
 					state.blackboard["TimeSinceShot"] = 0.f;
 				}
 				else
@@ -226,6 +237,26 @@ void StateMachineActor::OnStart()
 
 				return -1;
 			});
+
+		state.transitions.emplace_back([&]()
+			{
+				if (IsHurt())
+				{
+					return 2;
+				}
+
+				return -1;
+			});
+	}
+
+	// Hurt state
+	{
+		auto& state = myStateMachine->AddState();
+
+		state.onEnter = [&]() 
+		{
+			state.blackboard["ClosestHealthWell"] = FindClosestHealthWell();
+		};
 	}
 
 	myStateMachine->SetStartState(0);
@@ -234,6 +265,31 @@ void StateMachineActor::OnStart()
 void StateMachineActor::OnUpdate(float aDeltaTime)
 {
 	myStateMachine->Update(aDeltaTime);
+}
+
+bool StateMachineActor::IsHurt()
+{
+	const auto& health = myEntity.GetComponent<AIU5HealthComponent>().currentHealth;
+	return !myIsOnHealthWell && health < 40.f;
+}
+
+const gem::vec3 StateMachineActor::FindClosestHealthWell()
+{
+	float closestWellDist = FLT_MAX;
+	Volt::Entity closestWell;
+
+	myEntity.GetScene()->GetRegistry().ForEach<HealthWellComponent>([&](Wire::EntityId id, const HealthWellComponent& comp)
+		{
+			Volt::Entity ent{ id, myEntity.GetScene() };
+			const float distance = gem::distance(myEntity.GetPosition(), ent.GetPosition());
+			if (distance < closestWellDist)
+			{
+				closestWell = ent;
+				closestWellDist = distance;
+			}
+		});
+
+	return closestWell.GetPosition();
 }
 
 void StateMachineActor::ShootBullet(const gem::vec3& direction, const float speed)
@@ -252,11 +308,15 @@ void StateMachineActor::ShootBullet(const gem::vec3& direction, const float spee
 		Volt::RigidbodyComponent ridigComp{};
 		ridigComp.disableGravity = true;
 		ridigComp.bodyType = Volt::BodyType::Dynamic;
+		ridigComp.layerId = 3;
+		ridigComp.collisionType = Volt::CollisionDetectionType::Continuous;
 
-		entity.AddComponent<Volt::RigidbodyComponent>(&ridigComp);
 		entity.AddComponent<Volt::SphereColliderComponent>();
+		entity.AddComponent<Volt::RigidbodyComponent>(&ridigComp);
+
+		entity.SetPosition(myEntity.GetPosition() + direction * 300.f);
 	}
 
 	entity.AddScript("BulletScript");
-	entity.GetPhysicsActor()->SetLinearVelocity(direction * speed);
+	entity.GetPhysicsActor()->AddForce(direction * speed, Volt::ForceMode::Force);
 }

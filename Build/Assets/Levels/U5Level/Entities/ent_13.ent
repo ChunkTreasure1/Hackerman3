@@ -1,6 +1,62 @@
 Entity:
   id: 13
   components:
+    - guid: [5241627842114713378, 11179844935521484427]
+      properties:
+        - type: 24
+          vectorType: 13
+          name: Type
+          data: 0
+        - type: 2
+          vectorType: 13
+          name: Layer ID
+          data: 0
+        - type: 7
+          vectorType: 13
+          name: Mass
+          data: 1
+        - type: 7
+          vectorType: 13
+          name: Linear Drag
+          data: 0.00999999978
+        - type: 7
+          vectorType: 13
+          name: Angular Drag
+          data: 0.0500000007
+        - type: 0
+          vectorType: 13
+          name: Disable Graivity
+          data: false
+        - type: 0
+          vectorType: 13
+          name: Is Kinematic
+          data: false
+        - type: 24
+          vectorType: 13
+          name: Collision Type
+          data: 0
+        - type: 2
+          vectorType: 13
+          name: Lock Flags
+          data: 0
+    - guid: [4729623499216546766, 7641901117993612960]
+      properties:
+        - type: 7
+          vectorType: 13
+          name: Radius
+          data: 50
+        - type: 10
+          vectorType: 13
+          name: Offset
+          data: [0, 0, 0]
+        - type: 0
+          vectorType: 13
+          name: Is Trigger
+          data: true
+        - type: 16
+          vectorType: 13
+          name: Physics Material
+          data: 0
     - guid: [5177849256600380923, 13689713549658374275]
       properties:
         - type: 12
@@ -57,3 +113,16 @@ Entity:
           vectorType: 13
           name: Walkable
           data: true
+    - guid: [5181037046415192703, 2844406606148408476]
+      properties:
+        - type: 21
+          vectorType: 23
+          name: Scripts
+          data:
+            - value: [5232754765804721390, 2669423962995392683]
+    - guid: [4859535054727468630, 11969252235859820172]
+      properties:
+        - type: 7
+          vectorType: 13
+          name: Heal Rate
+          data: 10

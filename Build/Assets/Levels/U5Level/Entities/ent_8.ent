@@ -18,7 +18,7 @@ Entity:
         - type: 16
           vectorType: 13
           name: Physics Material
-          data: 1499756778312965
+          data: 57928654030491085
     - guid: [5241627842114713378, 11179844935521484427]
       properties:
         - type: 24
@@ -28,7 +28,7 @@ Entity:
         - type: 2
           vectorType: 13
           name: Layer ID
-          data: 1
+          data: 0
         - type: 7
           vectorType: 13
           name: Mass
