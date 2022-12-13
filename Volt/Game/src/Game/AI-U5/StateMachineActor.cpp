@@ -255,8 +255,85 @@ void StateMachineActor::OnStart()
 
 		state.onEnter = [&]() 
 		{
+
 			state.blackboard["ClosestHealthWell"] = FindClosestHealthWell();
 		};
+
+
+		state.onUpdate = [&](float aDeltaTime)
+		{
+
+			const float distance = gem::distance(myEntity.GetPosition(), std::any_cast<gem::vec3>(state.blackboard.find("ClosestHealthWell")->second));
+
+			if (distance > 200)
+			{
+				const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
+
+				const gem::vec3 direction = gem::normalize(std::any_cast<gem::vec3>(state.blackboard.find("ClosestHealthWell")->second) - myEntity.GetPosition());
+				const gem::vec3 rotTo = gem::eulerAngles(gem::fromTo(direction, myEntity.GetForward()));
+
+				if (rotTo.y + myEntity.GetRotation().y < myEntity.GetRotation().y - 0.01)
+				{
+					myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, comp.turningSpeed * -1.f, 0.f });
+					myEntity.GetPhysicsActor()->SetLinearVelocity({ 0.f });
+				}
+				else if (rotTo.y + myEntity.GetRotation().y > myEntity.GetRotation().y + 0.01)
+				{
+					myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, comp.turningSpeed, 0.f });
+					myEntity.GetPhysicsActor()->SetLinearVelocity({ 0.f });
+				}
+				else
+				{
+					myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, 0.f, 0.f });
+					myEntity.GetPhysicsActor()->SetLinearVelocity(gem::normalize(direction)* comp.speed);
+				}
+			}
+			else 
+			{
+				myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, 0.f, 0.f });
+				myEntity.GetPhysicsActor()->SetLinearVelocity({ 0.f });
+			}
+
+			state.transitions.emplace_back([&]()
+				{
+					if (!IsHurt())
+					{
+						return 0;
+					}
+
+					return -1;
+				});
+
+
+			state.transitions.emplace_back([&]()
+				{
+					const auto& targetPos = PollingStationU5::Get().PollDecisionTargetPosition();
+
+					const gem::vec3 direction = gem::normalize(targetPos - myEntity.GetPosition());
+					const gem::vec3 origin = myEntity.GetPosition() + direction * 300.f;
+
+					Volt::RaycastHit hit;
+					if (Volt::Physics::GetScene()->Raycast(origin, direction, 10000.f, &hit))
+					{
+						Volt::Entity hitEntity = { hit.hitEntity, myEntity.GetScene() };
+						if (hitEntity.HasComponent<AIU5DecisionActorComponent>())
+						{
+							return 1;
+						}
+					}
+
+					return -1;
+				});
+
+		};
+
+
+	}
+
+	//Flee State
+	{
+
+
 	}
 
 	myStateMachine->SetStartState(0);
@@ -290,6 +367,22 @@ const gem::vec3 StateMachineActor::FindClosestHealthWell()
 		});
 
 	return closestWell.GetPosition();
+}
+
+void StateMachineActor::OnTriggerEnter(Volt::Entity entity, bool isTrigger)
+{
+	if (entity.HasComponent<HealthWellComponent>())
+	{
+		myIsOnHealthWell = true;
+	}
+}
+
+void StateMachineActor::OnTriggerExit(Volt::Entity entity, bool isTrigger)
+{
+	if (entity.HasComponent<HealthWellComponent>())
+	{
+		myIsOnHealthWell = false;
+	}
 }
 
 void StateMachineActor::ShootBullet(const gem::vec3& direction, const float speed)

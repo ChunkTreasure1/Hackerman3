@@ -5,11 +5,11 @@ PhysicsLayers:
     name: Default
   - layerId: 1
     bitValue: 2
-    collidesWith: 19
+    collidesWith: 51
     name: Player1
   - layerId: 2
     bitValue: 4
-    collidesWith: 12
+    collidesWith: 44
     name: Player2
   - layerId: 3
     bitValue: 8
@@ -21,7 +21,7 @@ PhysicsLayers:
     name: Bullet2
   - layerId: 5
     bitValue: 32
-    collidesWith: 1
+    collidesWith: 7
     name: EnemyHitbox
   - layerId: 6
     bitValue: 64

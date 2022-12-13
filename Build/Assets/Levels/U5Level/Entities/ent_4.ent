@@ -113,12 +113,39 @@ Entity:
           vectorType: 13
           name: Walkable
           data: true
-    - guid: [5263508441546948595, 7242011014789895856]
-      properties:
-        []
     - guid: [5643278339155665755, 5065944822186435496]
       properties:
         - type: 7
           vectorType: 13
           name: Health
           data: 100
+    - guid: [5309381049477655656, 10034625508873845897]
+      properties:
+        - type: 7
+          vectorType: 13
+          name: Max Forward Distance
+          data: 300
+        - type: 7
+          vectorType: 13
+          name: Max Side Distance
+          data: 200
+        - type: 7
+          vectorType: 13
+          name: Speed
+          data: 200
+        - type: 7
+          vectorType: 13
+          name: Whisker Angle
+          data: 60
+        - type: 7
+          vectorType: 13
+          name: Turning Speed
+          data: 10
+        - type: 7
+          vectorType: 13
+          name: Fire Rate
+          data: 0.5
+        - type: 7
+          vectorType: 13
+          name: Shoot Distance
+          data: 2000

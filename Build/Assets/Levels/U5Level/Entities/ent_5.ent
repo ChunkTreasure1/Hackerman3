@@ -113,6 +113,13 @@ Entity:
           vectorType: 13
           name: Walkable
           data: true
+    - guid: [5181037046415192703, 2844406606148408476]
+      properties:
+        - type: 21
+          vectorType: 23
+          name: Scripts
+          data:
+            - value: [5528002578052140862, 16172446929725385600]
     - guid: [5370554487831839848, 9013899595170425776]
       properties:
         - type: 7
@@ -149,10 +156,3 @@ Entity:
           vectorType: 13
           name: Health
           data: 100
-    - guid: [5181037046415192703, 2844406606148408476]
-      properties:
-        - type: 21
-          vectorType: 23
-          name: Scripts
-          data:
-            - value: [5528002578052140862, 16172446929725385600]
