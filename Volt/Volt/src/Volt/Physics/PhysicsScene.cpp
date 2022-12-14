@@ -145,12 +145,18 @@ namespace Volt
 		return result;
 	}
 
-	bool PhysicsScene::Raycast(const gem::vec3& origin, const gem::vec3& direction, float maxDistance, RaycastHit* outHit, uint32_t layerMask)
+	bool PhysicsScene::Raycast(const gem::vec3& origin, const gem::vec3& direction, float maxDistance, RaycastHit* outHit, std::vector<uint32_t> layerMask)
 	{
-		const auto& layer = PhysicsLayerManager::GetLayer(layerMask);
+		uint32_t bitMask = 0;
+		for (const auto& l : layerMask)
+		{
+			const auto& layer = PhysicsLayerManager::GetLayer(l);
+			bitMask |= layer.bitValue;
+		}
+
 
 		physx::PxFilterData data{};
-		data.word0 = layer.bitValue;
+		data.word0 = bitMask;
 
 		physx::PxQueryFilterData qFilterData;
 		qFilterData.flags = physx::PxQueryFlag::eDYNAMIC | physx::PxQueryFlag::eSTATIC;

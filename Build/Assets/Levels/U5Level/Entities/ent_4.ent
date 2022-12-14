@@ -1,6 +1,54 @@
 Entity:
   id: 4
   components:
+    - guid: [5286063689944630538, 17226906502844189601]
+      properties:
+        - type: 7
+          vectorType: 13
+          name: Max Forward Distance
+          data: 1000
+        - type: 7
+          vectorType: 13
+          name: Max Side Distance
+          data: 900
+        - type: 7
+          vectorType: 13
+          name: Speed
+          data: 1000
+        - type: 7
+          vectorType: 13
+          name: Whisker Angle
+          data: 59
+        - type: 7
+          vectorType: 13
+          name: Turning Speed
+          data: 1
+        - type: 7
+          vectorType: 13
+          name: Fire Rate
+          data: 0.5
+        - type: 7
+          vectorType: 13
+          name: Shoot Distance
+          data: 10000
+    - guid: [5594831065701184629, 5808174883320445581]
+      properties:
+        - type: 10
+          vectorType: 13
+          name: Half Size
+          data: [216, 390, 217]
+        - type: 10
+          vectorType: 13
+          name: Offset
+          data: [-215, 0, 0]
+        - type: 0
+          vectorType: 13
+          name: Is Trigger
+          data: false
+        - type: 16
+          vectorType: 13
+          name: Physics Material
+          data: 36028801314265457
     - guid: [5241627842114713378, 11179844935521484427]
       properties:
         - type: 24
@@ -39,40 +87,22 @@ Entity:
           vectorType: 13
           name: Lock Flags
           data: 0
-    - guid: [4729623499216546766, 7641901117993612960]
-      properties:
-        - type: 7
-          vectorType: 13
-          name: Radius
-          data: 548
-        - type: 10
-          vectorType: 13
-          name: Offset
-          data: [0, 0, 0]
-        - type: 0
-          vectorType: 13
-          name: Is Trigger
-          data: false
-        - type: 16
-          vectorType: 13
-          name: Physics Material
-          data: 57928654030491085
     - guid: [5177849256600380923, 13689713549658374275]
       properties:
         - type: 12
           vectorType: 13
           name: Tag
-          data: gubb
+          data: gubb2
     - guid: [5152712443922219371, 10617432012782403218]
       properties:
         - type: 10
           vectorType: 13
           name: Position
-          data: [3885.14502, 118.253723, -129.109833]
+          data: [3591.73071, 118.253716, -3136.72607]
         - type: 10
           vectorType: 13
           name: Rotation
-          data: [0, -1.55334306, 0]
+          data: [0, -1.55334389, 0]
         - type: 10
           vectorType: 13
           name: Scale
@@ -113,39 +143,16 @@ Entity:
           vectorType: 13
           name: Walkable
           data: true
+    - guid: [5181037046415192703, 2844406606148408476]
+      properties:
+        - type: 21
+          vectorType: 23
+          name: Scripts
+          data:
+            - value: [5237494521217666614, 17080649606472804741]
     - guid: [5643278339155665755, 5065944822186435496]
       properties:
         - type: 7
           vectorType: 13
           name: Health
           data: 100
-    - guid: [5309381049477655656, 10034625508873845897]
-      properties:
-        - type: 7
-          vectorType: 13
-          name: Max Forward Distance
-          data: 300
-        - type: 7
-          vectorType: 13
-          name: Max Side Distance
-          data: 200
-        - type: 7
-          vectorType: 13
-          name: Speed
-          data: 200
-        - type: 7
-          vectorType: 13
-          name: Whisker Angle
-          data: 60
-        - type: 7
-          vectorType: 13
-          name: Turning Speed
-          data: 10
-        - type: 7
-          vectorType: 13
-          name: Fire Rate
-          data: 0.5
-        - type: 7
-          vectorType: 13
-          name: Shoot Distance
-          data: 2000

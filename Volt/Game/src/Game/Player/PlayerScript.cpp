@@ -192,7 +192,7 @@ bool PlayerScript::TryRaycastTarget()
 	}
 	
 	Volt::RaycastHit hit;
-	if (Volt::Physics::GetScene()->Raycast(cam.GetPosition(), dir, 100000.f, &hit, 3))
+	if (Volt::Physics::GetScene()->Raycast(cam.GetPosition(), dir, 100000.f, &hit, { 3 }))
 	{
 		if (myTargetedEntity == Volt::Entity{ hit.hitEntity, myEntity.GetScene() }) return true;
 

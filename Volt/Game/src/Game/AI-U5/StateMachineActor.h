@@ -40,5 +40,11 @@ private:
 	void ShootBullet(const gem::vec3& direction, const float speed);
 	bool myIsOnHealthWell = false;
 
+	bool myIsDead = false;
+	float myDeathTimer = 5.f;
+
+	gem::vec3 myStartPos = 0.f;
+	gem::vec3 myStartRot = 0.f;
+	
 	Scope<StateMachine> myStateMachine;
 };

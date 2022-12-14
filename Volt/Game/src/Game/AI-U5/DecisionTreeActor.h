@@ -24,7 +24,7 @@ public:
 	void OnStart() override;
 	void OnUpdate(float aDeltaTime) override;
 
-	bool IsHealthy();
+	bool IsHurt();
 	bool CanSeeBish();
 	void Shoot(float aDeltaTime);
 	void Search();
@@ -35,15 +35,23 @@ public:
 	void OnTriggerEnter(Volt::Entity entity, bool isTrigger)override;
 	void OnTriggerExit(Volt::Entity entity, bool isTrigger) override;
 
+	const gem::vec3 FindClosestHealthWell();
+
 	void ShootBullet(const gem::vec3& direction, const float speed);
 
 	static Ref<ScriptBase> Create(Volt::Entity aEntity) { return CreateRef<DecisionTreeActor>(aEntity); }
-	static WireGUID GetStaticGUID() { return "{5E3DCF3E-690E-4CB7-806B-231BCC1270E0}"_guid; };
+	static WireGUID GetStaticGUID() { return "{823BCE36-5184-48AF-8529-BAE651A80AED}"_guid; };
 	WireGUID GetGUID() override { return GetStaticGUID(); }
 	void SetIsOnHealthWell(bool avalue) { myIsOnHealthWell = avalue; };
 
 private:
 	bool myIsOnHealthWell = false;
+	bool myIsDead = false;
+
+	float myDeathTimer = 5.f;
+	gem::vec3 myStartPos = 0.f;
+	gem::vec3 myStartRot = 0.f;
+
 	std::unordered_map<std::string, std::any> blackboard;
 };
 

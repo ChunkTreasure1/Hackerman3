@@ -36,7 +36,7 @@ namespace Volt
 		inline void SetGravity(const gem::vec3& gravity) { myPhysXScene->setGravity(PhysXUtilities::ToPhysXVector(gravity)); }
 
 		bool Raycast(const gem::vec3& origin, const gem::vec3& direction, float maxDistance, RaycastHit* outHit);
-		bool Raycast(const gem::vec3& origin, const gem::vec3& direction, float maxDistance, RaycastHit* outHit, uint32_t layerMask);
+		bool Raycast(const gem::vec3& origin, const gem::vec3& direction, float maxDistance, RaycastHit* outHit, std::vector<uint32_t> layerMask);
 
 		bool OverlapBox(const gem::vec3& origin, const gem::vec3& halfSize, std::array<physx::PxOverlapHit, MAX_OVERLAP_COLLIDERS>& buffer, uint32_t& count);
 		bool OverlapCapsule(const gem::vec3& origin, float radius, float halfHeight, std::array<physx::PxOverlapHit, MAX_OVERLAP_COLLIDERS>& buffer, uint32_t& count);

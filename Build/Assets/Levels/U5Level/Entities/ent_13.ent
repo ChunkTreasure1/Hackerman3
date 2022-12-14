@@ -56,7 +56,7 @@ Entity:
         - type: 16
           vectorType: 13
           name: Physics Material
-          data: 57928654030491085
+          data: 0
     - guid: [5177849256600380923, 13689713549658374275]
       properties:
         - type: 12
