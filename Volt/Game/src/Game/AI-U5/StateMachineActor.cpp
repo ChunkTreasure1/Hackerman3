@@ -55,72 +55,71 @@ void StateMachineActor::OnStart()
 				Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, target);
 			}
 
-			if (hitWall)
+			if (!std::any_cast<bool>(state.blackboard["IsTurning"]))
 			{
-				if (!std::any_cast<bool>(state.blackboard["IsTurning"]))
+				state.blackboard["TurningDirection"] = Volt::Random::Float(-1.f, 1.f);
+				state.blackboard["IsTurning"] = true;
+			}
+
+			bool leftHit = false;
+			bool rightHit = false;
+
+			const float yRot = gem::degrees(myEntity.GetRotation().y) + gem::degrees(90.f);
+
+			// Left whisker
+			{
+				const gem::vec3 direction = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, -gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
+
+				Volt::RaycastHit hit;
+				if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), direction, comp.maxSideDistance, &hit, { 0 }))
 				{
-					state.blackboard["TurningDirection"] = Volt::Random::Float(-1.f, 1.f);
-					state.blackboard["IsTurning"] = true;
+					leftHit = true;
 				}
 
-				bool leftHit = false;
-				bool rightHit = false;
+				Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + direction * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+			}
 
-				const float yRot = gem::degrees(myEntity.GetRotation().y) + gem::degrees(90.f);
+			// Right whisker
+			{
+				const gem::vec3 direction = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
 
-				// Left whisker
+				Volt::RaycastHit hit;
+				if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), direction, comp.maxSideDistance, &hit, { 0 }))
 				{
-					const gem::vec3 direction = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, -gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
-
-					Volt::RaycastHit hit;
-					if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), direction, comp.maxSideDistance, &hit, { 0 }))
-					{
-						leftHit = true;
-					}
-
-					Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + direction * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+					rightHit = true;
 				}
 
-				// Right whisker
+				Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + direction * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+			}
+
+			hitWall |= leftHit;
+			hitWall |= rightHit;
+
+			// Turn
+			{
+				if (leftHit && !rightHit)
 				{
-					const gem::vec3 direction = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
-
-					Volt::RaycastHit hit;
-					if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), direction, comp.maxSideDistance, &hit, { 0 }))
-					{
-						rightHit = true;
-					}
-
-					Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + direction * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+					state.blackboard["TurningDirection"] = 1.f;
+				}
+				else if (rightHit && !leftHit)
+				{
+					state.blackboard["TurningDirection"] = -1.f;
 				}
 
-				// Turn
-				{
-					if (leftHit && !rightHit)
-					{
-						state.blackboard["TurningDirection"] = 1.f;
-					}
-					else if (rightHit && !leftHit)
-					{
-						state.blackboard["TurningDirection"] = -1.f;
-					}
-
-					state.blackboard["TurningDirection"] = std::any_cast<float>(state.blackboard.at("TurningDirection")) < 0.f ? -1.f : 1.f;
-					myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, comp.turningSpeed * std::any_cast<float>(state.blackboard.at("TurningDirection")), 0.f });
-				}
-
-				if (!leftHit && !rightHit && !hitWall)
-				{
-					state.blackboard["IsTurning"] = false;
-				}
-
+				state.blackboard["TurningDirection"] = std::any_cast<float>(state.blackboard.at("TurningDirection")) < 0.f ? -1.f : 1.f;
 				myEntity.GetPhysicsActor()->SetLinearVelocity(0.f);
+				myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, comp.turningSpeed * std::any_cast<float>(state.blackboard.at("TurningDirection")), 0.f });
+			}
+
+			if (leftHit || rightHit)
+			{
+				state.blackboard["IsTurning"] = false;
 			}
 
 			if (!hitWall)
 			{
 				const gem::vec3 dir = gem::normalize(myEntity.GetForward());
-				myEntity.GetPhysicsActor()->SetLinearVelocity(gem::vec3{ dir.x, 0.f, dir.z } * comp.speed);
+				myEntity.GetPhysicsActor()->SetLinearVelocity(gem::vec3{ dir.x, 0.f, dir.z } *comp.speed);
 				myEntity.GetPhysicsActor()->SetAngularVelocity(0.f);
 			}
 		};
@@ -136,7 +135,7 @@ void StateMachineActor::OnStart()
 				if (Volt::Physics::GetScene()->Raycast(origin, direction, 10000.f, &hit, { 0, 2 }))
 				{
 					Volt::Entity hitEntity = { hit.hitEntity, myEntity.GetScene() };
-					if (hitEntity.HasComponent<AIU5DecisionActorComponent>())
+					if (hitEntity.HasComponent<AIU5DecisionActorComponent>() && !hitEntity.GetScript<DecisionTreeActor>("DecisionTreeActor")->IsDead())
 					{
 						return 1;
 					}
@@ -171,15 +170,6 @@ void StateMachineActor::OnStart()
 
 		state.onUpdate = [&](float aDeltaTime)
 		{
-			// Check walked extra bit
-			{
-				const gem::vec3 startPosition = std::any_cast<gem::vec3>(state.blackboard.at("StartPosition"));
-				if (gem::distance(startPosition, myEntity.GetPosition()) < 1000.f)
-				{
-					return;
-				}
-			}
-
 			const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
 
 			const auto& targetPos = PollingStationU5::Get().PollDecisionTargetPosition();
@@ -236,7 +226,7 @@ void StateMachineActor::OnStart()
 				if (Volt::Physics::GetScene()->Raycast(origin, direction, 10000.f, &hit, { 0, 2 }))
 				{
 					Volt::Entity hitEntity = { hit.hitEntity, myEntity.GetScene() };
-					if (!hitEntity.HasComponent<AIU5DecisionActorComponent>())
+					if (!hitEntity.HasComponent<AIU5DecisionActorComponent>() || hitEntity.GetScript<DecisionTreeActor>("DecisionTreeActor")->IsDead())
 					{
 						return 0;
 					}
@@ -260,12 +250,11 @@ void StateMachineActor::OnStart()
 	{
 		auto& state = myStateMachine->AddState();
 
-		state.onEnter = [&]() 
+		state.onEnter = [&]()
 		{
 
 			state.blackboard["ClosestHealthWell"] = FindClosestHealthWell();
 		};
-
 
 		state.onUpdate = [&](float aDeltaTime)
 		{
@@ -296,7 +285,7 @@ void StateMachineActor::OnStart()
 					myEntity.GetPhysicsActor()->SetLinearVelocity(gem::vec3{ dir.x, 0.f, dir.z } *comp.speed);
 				}
 			}
-			else 
+			else
 			{
 				myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, 0.f, 0.f });
 				myEntity.GetPhysicsActor()->SetLinearVelocity({ 0.f });
@@ -324,7 +313,7 @@ void StateMachineActor::OnStart()
 					if (Volt::Physics::GetScene()->Raycast(origin, direction, 10000.f, &hit))
 					{
 						Volt::Entity hitEntity = { hit.hitEntity, myEntity.GetScene() };
-						if (hitEntity.HasComponent<AIU5DecisionActorComponent>())
+						if (hitEntity.HasComponent<AIU5DecisionActorComponent>() && !hitEntity.GetScript<DecisionTreeActor>("DecisionTreeActor")->IsDead())
 						{
 							return 1;
 						}
@@ -334,8 +323,6 @@ void StateMachineActor::OnStart()
 				});
 
 		};
-
-
 	}
 
 	//Flee State
@@ -369,6 +356,7 @@ void StateMachineActor::OnUpdate(float aDeltaTime)
 			myEntity.SetPosition(myStartPos);
 			myEntity.SetRotation(myStartRot);
 			myDeathTimer = 5.f;
+			myIsDead = false;
 		}
 
 		return;
@@ -380,7 +368,22 @@ void StateMachineActor::OnUpdate(float aDeltaTime)
 bool StateMachineActor::IsHurt()
 {
 	const auto& health = myEntity.GetComponent<AIU5HealthComponent>().currentHealth;
-	return !myIsOnHealthWell && health < 40.f;
+	if (!myIsOnHealthWell && health < 40.f)
+	{
+		return true;
+	}
+
+	if (myIsOnHealthWell && health < 80.f)
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool StateMachineActor::IsDead()
+{
+	return myIsDead;
 }
 
 const gem::vec3 StateMachineActor::FindClosestHealthWell()
@@ -392,7 +395,7 @@ const gem::vec3 StateMachineActor::FindClosestHealthWell()
 		{
 			Volt::Entity ent{ id, myEntity.GetScene() };
 			const float distance = gem::distance(myEntity.GetPosition(), ent.GetPosition());
-			if (distance < closestWellDist)
+			if (distance < closestWellDist && !ent.GetScript<HealthWellScript>("HealthWellScript")->HasPlayer())
 			{
 				closestWell = ent;
 				closestWellDist = distance;

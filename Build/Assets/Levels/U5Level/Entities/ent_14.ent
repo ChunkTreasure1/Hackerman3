@@ -68,7 +68,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Position
-          data: [3237.75903, 42.1035309, 3057.88428]
+          data: [2782.88281, 42.1035309, -2146.88745]
         - type: 10
           vectorType: 13
           name: Rotation

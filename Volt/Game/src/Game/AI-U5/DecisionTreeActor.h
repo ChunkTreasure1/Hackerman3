@@ -25,6 +25,7 @@ public:
 	void OnUpdate(float aDeltaTime) override;
 
 	bool IsHurt();
+	bool IsDead();
 	bool CanSeeBish();
 	void Shoot(float aDeltaTime);
 	void Search();
@@ -47,6 +48,8 @@ public:
 private:
 	bool myIsOnHealthWell = false;
 	bool myIsDead = false;
+	bool turnToPool = true;
+	bool myHasTurned = false;
 
 	float myDeathTimer = 5.f;
 	gem::vec3 myStartPos = 0.f;

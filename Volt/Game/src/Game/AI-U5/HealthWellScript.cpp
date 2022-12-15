@@ -46,3 +46,8 @@ void HealthWellScript::OnTriggerExit(Volt::Entity entity, bool isTrigger)
 		myEntities.erase(it);
 	}
 }
+
+bool HealthWellScript::HasPlayer() const
+{
+	return !myEntities.empty();
+}

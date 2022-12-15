@@ -27,6 +27,8 @@ public:
 	void OnUpdate(float aDeltaTime) override;
 
 	bool IsHurt();
+	bool IsDead();
+
 	const gem::vec3 FindClosestHealthWell();
 
 	void OnTriggerEnter(Volt::Entity entity, bool isTrigger)override ;

@@ -18,7 +18,7 @@ Entity:
         - type: 16
           vectorType: 13
           name: Physics Material
-          data: 0
+          data: 57928654030491085
     - guid: [5241627842114713378, 11179844935521484427]
       properties:
         - type: 24
@@ -68,7 +68,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Position
-          data: [-1257.93872, 411.13208, 1754.73633]
+          data: [-1257.93872, 398.217285, 1705.03076]
         - type: 10
           vectorType: 13
           name: Rotation
@@ -76,7 +76,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Scale
-          data: [30.8053284, 7.6774931, 0.999979436]
+          data: [30.8050194, 7.6774931, 0.99996978]
         - type: 0
           vectorType: 13
           name: "Visible "
