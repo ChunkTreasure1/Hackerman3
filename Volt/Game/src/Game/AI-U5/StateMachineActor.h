@@ -40,8 +40,9 @@ public:
 	void SetIsOnHealthWell(bool avalue) { myIsOnHealthWell = avalue; };
 private:
 	void ShootBullet(const gem::vec3& direction, const float speed);
-	bool myIsOnHealthWell = false;
+	void SetVelocity(const gem::vec3& direction);
 
+	bool myIsOnHealthWell = false;
 	bool myIsDead = false;
 	float myDeathTimer = 5.f;
 

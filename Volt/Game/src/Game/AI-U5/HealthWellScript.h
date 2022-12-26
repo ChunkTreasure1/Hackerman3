@@ -19,7 +19,7 @@ public:
 	void OnTriggerEnter(Volt::Entity entity, bool isTrigger) override;
 	void OnTriggerExit(Volt::Entity entity, bool isTrigger) override;
 
-	bool HasPlayer() const;
+	Volt::Entity GetPlayer() const;
 
 	static Ref<ScriptBase> Create(Volt::Entity aEntity) { return CreateRef<HealthWellScript>(aEntity); }
 	static WireGUID GetStaticGUID() { return "{3485D4EE-7ABC-489E-AB80-417DF3B20B25}"_guid; };

@@ -46,10 +46,14 @@ public:
 	void SetIsOnHealthWell(bool avalue) { myIsOnHealthWell = avalue; };
 
 private:
+	void SetVelocity(const gem::vec3& direction);
+
 	bool myIsOnHealthWell = false;
 	bool myIsDead = false;
 	bool turnToPool = true;
 	bool myHasTurned = false;
+
+	gem::vec3 myLastDirection = 0.f;
 
 	float myDeathTimer = 5.f;
 	gem::vec3 myStartPos = 0.f;
