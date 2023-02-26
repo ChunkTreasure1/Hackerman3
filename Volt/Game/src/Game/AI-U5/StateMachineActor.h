@@ -44,6 +44,7 @@ private:
 
 	bool myIsOnHealthWell = false;
 	bool myIsDead = false;
+	bool myHitWall = false;
 	float myDeathTimer = 5.f;
 
 	gem::vec3 myStartPos = 0.f;

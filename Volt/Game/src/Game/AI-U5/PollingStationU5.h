@@ -30,6 +30,12 @@ public:
 	const gem::vec3& PollStateTargetPosition() const;
 	const gem::vec3& PollDecisionTargetPosition() const;
 
+	const gem::vec3& PollDecisionRespawnPosition() const;
+	const gem::vec3& PollStateRespawnPosition() const;
+
+	void SetDecisionRespawn(const gem::vec3& aPos);
+	void SetStateRespawn(const gem::vec3& aPos);
+
 	inline static PollingStationU5& Get() { return *myInstance; }
 
 private:
@@ -38,4 +44,9 @@ private:
 
 	gem::vec3 myStateTargetPosition;
 	gem::vec3 myDecisionTargetPosition;
+
+	gem::vec3 myStateRespawnPosition{ 0 };
+	gem::vec3 myDecisionRespawnPosition{ 0 };
+
+	float mySafeDist;
 };

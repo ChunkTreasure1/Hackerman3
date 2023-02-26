@@ -12,6 +12,7 @@
 
 #include <Volt/Utility/Random.h>
 #include <Volt/Asset/AssetManager.h>
+#include <iostream>
 
 VT_REGISTER_SCRIPT(DecisionTreeActor);
 
@@ -25,6 +26,8 @@ void DecisionTreeActor::OnStart()
 {
 	myStartPos = myEntity.GetPosition();
 	myStartRot = myEntity.GetRotation();
+
+	PollingStationU5::Get().SetDecisionRespawn(myStartPos);
 
 	blackboard["TimeSinceShot"] = 10.f;
 	blackboard["IsTurning"] = false;
@@ -49,7 +52,7 @@ void DecisionTreeActor::OnUpdate(float aDeltaTime)
 			myEntity.GetPhysicsActor()->SetAngularVelocity(0.f);
 			myEntity.GetPhysicsActor()->SetLinearVelocity(0.f);
 
-			myEntity.SetPosition(myStartPos);
+			myEntity.SetPosition(PollingStationU5::Get().PollDecisionRespawnPosition());
 			myEntity.SetRotation(myStartRot);
 			myDeathTimer = 5.f;
 			myIsDead = false;
@@ -117,7 +120,7 @@ bool DecisionTreeActor::CanSeeBish()
 	const auto& targetPos = PollingStationU5::Get().PollStateTargetPosition();
 
 	const gem::vec3 direction = gem::normalize(targetPos - myEntity.GetPosition());
-	const gem::vec3 origin = myEntity.GetPosition() + direction * 300.f;
+	const gem::vec3 origin = myEntity.GetPosition();
 
 	Volt::RaycastHit hit;
 	if (Volt::Physics::GetScene()->Raycast(origin, direction, 10000.f, &hit, { 0, 1 }))
@@ -183,8 +186,18 @@ void DecisionTreeActor::Shoot(float aDeltaTime)
 
 void DecisionTreeActor::Search()
 {
+	std::cout << "Search\n";
 	const auto& comp = myEntity.GetComponent<AIU5DecisionActorComponent>();
 	Volt::RaycastHit forwardHit;
+
+	const gem::vec3 directionLeft = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, -gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
+	const gem::vec3 directionRight = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
+
+	Volt::RaycastHit leftHit;
+	const bool rightWisker = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), directionLeft, comp.maxSideDistance, &leftHit, { 0 });
+
+	Volt::RaycastHit rightHit;
+	const bool leftWisker = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), directionRight, comp.maxSideDistance, &rightHit, { 0 });
 
 	myEntity.GetPhysicsActor()->SetAngularVelocity(0.f);
 
@@ -200,9 +213,25 @@ void DecisionTreeActor::Search()
 		if (forwardHit.distance < 1000.f)
 		{
 			const gem::vec3 reflectedDir = gem::reflect(currentDirection, forwardHit.normal);
-			SetVelocity(reflectedDir);
+			SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
 		}
 	}
+
+	if (rightWisker && rightHit.distance < comp.maxSideDistance)
+	{
+		const gem::vec3 reflectedDir = gem::reflect(directionRight, rightHit.normal);
+		SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
+	}
+	if (leftWisker && leftHit.distance < comp.maxSideDistance)
+	{
+		const gem::vec3 reflectedDir = gem::reflect(directionLeft, leftHit.normal);
+		SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
+	}
+
+	Volt::Renderer::SubmitLine(myEntity.GetPosition() , myEntity.GetPosition() + currentDirection * 1000  + gem::vec3{ 0.f, 100.f, 0.f });
+	Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + directionRight * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+	Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + directionLeft * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+
 }
 
 void DecisionTreeActor::GoToHealingPool()
@@ -228,7 +257,7 @@ void DecisionTreeActor::GoToHealingPool()
 	if (!hitWall)
 	{
 		currentDirection = gem::normalize(closestHealthWell - myEntity.GetPosition());
-		SetVelocity(currentDirection);
+		SetVelocity(gem::vec3(currentDirection.x,0.f,currentDirection.z));
 	}
 
 	if (hitWall && Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), currentDirection, 10000.f, &forwardHit, { 0 }))
@@ -236,7 +265,7 @@ void DecisionTreeActor::GoToHealingPool()
 		if (forwardHit.distance < 1000.f)
 		{
 			const gem::vec3 reflectedDir = gem::reflect(currentDirection, forwardHit.normal);
-			SetVelocity(reflectedDir);
+			SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
 		}
 	}
 }

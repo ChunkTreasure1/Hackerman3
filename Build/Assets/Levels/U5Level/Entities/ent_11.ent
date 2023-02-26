@@ -76,7 +76,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Scale
-          data: [26.0178261, 7.6774931, 0.999953926]
+          data: [28.5179996, 7.87699986, 3.29999995]
         - type: 0
           vectorType: 13
           name: "Visible "

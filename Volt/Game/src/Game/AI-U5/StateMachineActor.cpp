@@ -27,6 +27,8 @@ void StateMachineActor::OnStart()
 	myStartPos = myEntity.GetPosition();
 	myStartRot = myEntity.GetRotation();
 
+	PollingStationU5::Get().SetStateRespawn(myStartPos);
+
 	SetVelocity({ Volt::Random::Float(-1.f, 1.f), 0.f, Volt::Random::Float(-1.f, 1.f) });
 
 	// Search state
@@ -47,6 +49,16 @@ void StateMachineActor::OnStart()
 			const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
 			Volt::RaycastHit forwardHit;
 
+			const gem::vec3 directionLeft = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, -gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
+			const gem::vec3 directionRight = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
+
+			Volt::RaycastHit leftHit;
+			const bool rightWisker = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), directionLeft, comp.maxSideDistance, &leftHit, { 0 });
+
+			Volt::RaycastHit rightHit;
+			const bool leftWisker = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), directionRight, comp.maxSideDistance, &rightHit, { 0 });
+
+
 			const gem::vec3 currentVelocity = myEntity.GetPhysicsActor()->GetLinearVelocity();
 			const gem::vec3 currentDirection = gem::normalize(currentVelocity);
 			if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), currentDirection, 10000.f, &forwardHit, { 0 }))
@@ -54,9 +66,25 @@ void StateMachineActor::OnStart()
 				if (forwardHit.distance < 1000.f)
 				{
 					const gem::vec3 reflectedDir = gem::reflect(currentDirection, forwardHit.normal);
-					SetVelocity(reflectedDir);
+					SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
 				}
 			}
+
+			if (rightWisker && rightHit.distance < comp.maxSideDistance)
+			{
+				const gem::vec3 reflectedDir = gem::reflect(directionRight, rightHit.normal);
+				SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
+			}
+			if (leftWisker && leftHit.distance < comp.maxSideDistance)
+			{
+				const gem::vec3 reflectedDir = gem::reflect(directionLeft, leftHit.normal);
+				SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
+			}
+
+			Volt::Renderer::SubmitLine(myEntity.GetPosition(), myEntity.GetPosition() + currentDirection * 1000 + gem::vec3{ 0.f, 100.f, 0.f });
+			Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + directionRight * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+			Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + directionLeft * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+
 		};
 
 		state.transitions.emplace_back([&]()
@@ -64,7 +92,7 @@ void StateMachineActor::OnStart()
 				const auto& targetPos = PollingStationU5::Get().PollDecisionTargetPosition();
 
 				const gem::vec3 direction = gem::normalize(targetPos - myEntity.GetPosition());
-				const gem::vec3 origin = myEntity.GetPosition() + direction * 300.f;
+				const gem::vec3 origin = myEntity.GetPosition();
 
 				Volt::RaycastHit hit;
 				if (Volt::Physics::GetScene()->Raycast(origin, direction, 10000.f, &hit, { 0, 2 }))
@@ -196,6 +224,8 @@ void StateMachineActor::OnStart()
 
 		state.onUpdate = [&](float aDeltaTime)
 		{
+			//myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, 0.f , 0.f });
+
 			const gem::vec3 closestHealthWell = FindClosestHealthWell();
 			const float distance = gem::distance(myEntity.GetPosition(), closestHealthWell);
 
@@ -205,20 +235,78 @@ void StateMachineActor::OnStart()
 			const gem::vec3 currentVelocity = myEntity.GetPhysicsActor()->GetLinearVelocity();
 			gem::vec3 currentDirection = gem::normalize(currentVelocity);
 
-			const bool hitWall = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), gem::normalize(closestHealthWell - myEntity.GetPosition()), gem::distance(closestHealthWell, myEntity.GetPosition()), &forwardHit, { 0 });
+			bool clearPathToHealthWell = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), gem::normalize(closestHealthWell - myEntity.GetPosition()), gem::distance(closestHealthWell, myEntity.GetPosition()), &forwardHit, { 0 });
 
-			if (!hitWall)
+			//side wisker
+			const float yRot = gem::degrees(myEntity.GetRotation().y) + gem::degrees(90.f);
+
+			bool hitWall = false;
+
+			const gem::vec3 directionLeft = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, -gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
+			const gem::vec3 directionRight = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
+
+			Volt::RaycastHit leftHit;
+			const bool rightWisker = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), directionLeft, comp.maxSideDistance, &leftHit, { 0 });
+
+			Volt::RaycastHit rightHit;
+			const bool leftWisker = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), directionRight, comp.maxSideDistance, &rightHit, { 0 });
+
+
+			Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + directionLeft * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+			Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + directionRight * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+
+			if (leftWisker || rightWisker)
 			{
-				currentDirection = gem::normalize(closestHealthWell - myEntity.GetPosition());
-				SetVelocity(currentDirection);
+				hitWall = true;
 			}
 
-			if (hitWall && Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), currentDirection, 10000.f, &forwardHit, { 0 }))
+			if (Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), currentDirection, 10000.f, &forwardHit, { 0 }))
 			{
 				if (forwardHit.distance < 1000.f)
 				{
-					const gem::vec3 reflectedDir = gem::reflect(currentDirection, forwardHit.normal);
-					SetVelocity(reflectedDir);
+					hitWall = true;
+				}
+
+			}
+
+			//
+			if (!hitWall)
+			{
+				currentDirection = gem::normalize(closestHealthWell - myEntity.GetPosition());
+				SetVelocity(gem::vec3(currentDirection.x, 0.f, currentDirection.z));
+			}
+
+			if (hitWall || myHitWall)
+			{
+				if (!clearPathToHealthWell)
+				{
+					if (leftWisker)
+					{
+						myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, comp.turningSpeed * -1.f, 0.f });
+					}
+					else if (rightWisker)
+					{
+						myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, comp.turningSpeed , 0.f });
+					}
+				}
+				else
+				{
+					if (leftWisker)
+					{
+
+						const gem::vec3 reflectedDir = gem::reflect(directionLeft, leftHit.normal);
+						SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
+					}
+					else if (rightWisker)
+					{
+						const gem::vec3 reflectedDir = gem::reflect(directionRight, rightHit.normal);
+						SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
+					}
+					else
+					{
+						const gem::vec3 reflectedDir = gem::reflect(currentDirection, forwardHit.normal);
+						SetVelocity(gem::vec3(reflectedDir.x, 0.f, reflectedDir.z));
+					}
 				}
 			}
 		};
@@ -244,8 +332,8 @@ void StateMachineActor::OnStart()
 			myEntity.GetPhysicsActor()->SetLinearVelocity(0.f);
 			myEntity.GetPhysicsActor()->SetAngularVelocity(0.f);
 		};
-		
-		state.transitions.emplace_back([&]() 
+
+		state.transitions.emplace_back([&]()
 			{
 				if (!IsHurt())
 				{
@@ -276,6 +364,40 @@ void StateMachineActor::OnStart()
 			});
 	}
 
+	// Dodge State
+	{
+		auto& state = myStateMachine->AddState();
+		state.onEnter = [&]()
+		{
+			myEntity.GetPhysicsActor()->SetLinearVelocity(0.f);
+			myEntity.GetPhysicsActor()->SetAngularVelocity(0.f);
+		};
+
+		state.onUpdate = [&](float aDeltaTime)
+		{
+
+
+		};
+
+		state.transitions.emplace_back([&]()
+			{
+				if (!IsHurt())
+				{
+					return 0;
+				}
+
+				return -1;
+			});
+
+		state.transitions.emplace_back([&]()
+			{
+
+				return -1;
+			});
+
+	}
+
+
 	myStateMachine->SetStartState(0);
 }
 
@@ -298,10 +420,13 @@ void StateMachineActor::OnUpdate(float aDeltaTime)
 			myEntity.GetPhysicsActor()->SetAngularVelocity(0.f);
 			myEntity.GetPhysicsActor()->SetLinearVelocity(0.f);
 
-			myEntity.SetPosition(myStartPos);
+			myEntity.SetPosition(PollingStationU5::Get().PollStateRespawnPosition());
 			myEntity.SetRotation(myStartRot);
 			myDeathTimer = 5.f;
 			myIsDead = false;
+
+			const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
+			myEntity.GetPhysicsActor()->SetLinearVelocity(myEntity.GetForward() * comp.speed);
 		}
 
 		return;
@@ -359,6 +484,10 @@ void StateMachineActor::OnTriggerEnter(Volt::Entity entity, bool isTrigger)
 	{
 		myIsOnHealthWell = true;
 	}
+	else if (entity.HasComponent<Volt::RigidbodyComponent>())
+	{
+		myHitWall = true;
+	}
 }
 
 void StateMachineActor::OnTriggerExit(Volt::Entity entity, bool isTrigger)
@@ -366,6 +495,10 @@ void StateMachineActor::OnTriggerExit(Volt::Entity entity, bool isTrigger)
 	if (entity.HasComponent<HealthWellComponent>())
 	{
 		myIsOnHealthWell = false;
+	}
+	else if (entity.HasComponent<Volt::RigidbodyComponent>())
+	{
+		myHitWall = false;
 	}
 }
 

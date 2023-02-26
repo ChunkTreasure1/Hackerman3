@@ -10,7 +10,7 @@ Entity:
         - type: 7
           vectorType: 13
           name: Max Side Distance
-          data: 900
+          data: 700
         - type: 7
           vectorType: 13
           name: Speed
