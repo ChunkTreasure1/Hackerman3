@@ -186,7 +186,6 @@ void DecisionTreeActor::Shoot(float aDeltaTime)
 
 void DecisionTreeActor::Search()
 {
-	std::cout << "Search\n";
 	const auto& comp = myEntity.GetComponent<AIU5DecisionActorComponent>();
 	Volt::RaycastHit forwardHit;
 

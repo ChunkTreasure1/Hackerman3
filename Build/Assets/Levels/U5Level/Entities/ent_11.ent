@@ -68,7 +68,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Position
-          data: [967.948608, 411.13208, -1804.96179]
+          data: [967.948608, 455.252625, -1804.96179]
         - type: 10
           vectorType: 13
           name: Rotation
@@ -76,7 +76,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Scale
-          data: [28.5179996, 7.87699986, 3.29999995]
+          data: [28.5172482, 7.87699986, 3.29990602]
         - type: 0
           vectorType: 13
           name: "Visible "

@@ -12,6 +12,7 @@
 
 #include <Volt/Utility/Random.h>
 #include <Volt/Asset/AssetManager.h>
+#include <iostream>
 
 VT_REGISTER_SCRIPT(StateMachineActor);
 
@@ -31,11 +32,12 @@ void StateMachineActor::OnStart()
 
 	SetVelocity({ Volt::Random::Float(-1.f, 1.f), 0.f, Volt::Random::Float(-1.f, 1.f) });
 
-	// Search state
+	// Search state: 0
 	{
 		auto& state = myStateMachine->AddState();
 		state.onEnter = [&]()
 		{
+			std::cout << "Entered Search\n";
 			state.blackboard["IsTurning"] = false;
 			state.blackboard["TurningDirection"] = 0.f;
 
@@ -118,7 +120,7 @@ void StateMachineActor::OnStart()
 			});
 	}
 
-	// Attack state
+	// Attack state: 1
 	{
 		auto& state = myStateMachine->AddState();
 		state.onEnter = [&]()
@@ -133,6 +135,7 @@ void StateMachineActor::OnStart()
 
 		state.onUpdate = [&](float aDeltaTime)
 		{
+
 			const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
 
 			const auto& targetPos = PollingStationU5::Get().PollDecisionTargetPosition();
@@ -207,9 +210,21 @@ void StateMachineActor::OnStart()
 
 				return -1;
 			});
+
+		state.transitions.emplace_back([&]()
+			{
+				const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
+
+				if (comp.Attacked && !IsHurt())
+				{
+					return 4;
+				}
+
+				return -1;
+			});
 	}
 
-	// Hurt state
+	// Hurt state: 2
 	{
 		auto& state = myStateMachine->AddState();
 
@@ -324,7 +339,7 @@ void StateMachineActor::OnStart()
 			});
 	}
 
-	//Healing State
+	//Healing State: 3
 	{
 		auto& state = myStateMachine->AddState();
 		state.onEnter = [&]()
@@ -364,33 +379,123 @@ void StateMachineActor::OnStart()
 			});
 	}
 
-	// Dodge State
+	// Dodge State: 4
 	{
 		auto& state = myStateMachine->AddState();
 		state.onEnter = [&]()
 		{
+			state.blackboard.emplace("TimeSinceShot", 10.f);
+			const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
+
+			std::cout << "entered Dodge\n";
+			myAttackedTimer = comp.coolDown;
 			myEntity.GetPhysicsActor()->SetLinearVelocity(0.f);
 			myEntity.GetPhysicsActor()->SetAngularVelocity(0.f);
 		};
 
 		state.onUpdate = [&](float aDeltaTime)
 		{
+			Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, PollingStationU5::Get().PollDecisionTargetPosition() + gem::vec3{ 0.f, 100.f, 0.f });
+			float radius =  gem::distance(myEntity.GetPosition(), PollingStationU5::Get().PollDecisionTargetPosition());
 
 
+			const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
+
+			float left;
+			if (myTurnLeft)
+			{
+				left = -1.f;
+			}
+			else
+			{
+				left = 1.f;
+			}
+
+			//Middle
+			const gem::vec3 dirMiddle = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, left * gem::radians(90.f), 0.f }), myEntity.GetForward()));
+			Volt::RaycastHit middleRayHit;
+			const bool middleHit = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), dirMiddle, comp.maxSideDistance, &middleRayHit, { 0 });
+			Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + dirMiddle * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+
+			//Lower 
+			const gem::vec3 directionLower = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, left * gem::radians(comp.whiskarAngle), 0.f }), myEntity.GetForward()));
+
+			Volt::RaycastHit LowerRay;
+			const bool LowerHit = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), directionLower, comp.maxSideDistance, &LowerRay, { 0 });
+
+			Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + directionLower * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+
+			//Upper 
+			const gem::vec3 directionUpper = gem::normalize(gem::rotate(gem::quat(gem::vec3{ 0.f, left * gem::radians(comp.whiskarAngle + 90.f), 0.f }), myEntity.GetForward()));
+
+			Volt::RaycastHit UpperRay;
+			const bool UpperHit = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), directionUpper, comp.maxSideDistance, &UpperRay, { 0 });
+
+			Volt::Renderer::SubmitLine(myEntity.GetPosition() + gem::vec3{ 0.f, 100.f, 0.f }, myEntity.GetPosition() + directionUpper * comp.maxSideDistance + gem::vec3{ 0.f, 100.f, 0.f });
+
+			if (middleHit || LowerHit || UpperHit)
+			{
+				myTurnLeft = !myTurnLeft;
+			}
+
+			float currentAngle = std::atan2f(myEntity.GetPosition().z - PollingStationU5::Get().PollDecisionTargetPosition().z, myEntity.GetPosition().x - PollingStationU5::Get().PollDecisionTargetPosition().x);
+
+			float movementAngle = currentAngle + gem::radians(5.f * left );
+
+			const gem::vec3 posOnCricle = gem::vec3{PollingStationU5::Get().PollDecisionTargetPosition().x +( radius * std::cosf(movementAngle)),0,PollingStationU5::Get().PollDecisionTargetPosition().z + (radius * std::sinf(movementAngle))};
+
+			const gem::vec3 circleDir = gem::normalize(posOnCricle - myEntity.GetPosition());
+
+			myEntity.GetPhysicsActor()->SetLinearVelocity(gem::vec3{ circleDir.x, 0.f, circleDir.z } *comp.speed);
+
+
+			const gem::vec3 direction = gem::normalize(PollingStationU5::Get().PollDecisionTargetPosition() - myEntity.GetPosition());
+
+			const gem::vec3 rotTo = gem::eulerAngles(gem::fromTo(direction, myEntity.GetForward()));
+
+			if (rotTo.y + myEntity.GetRotation().y < myEntity.GetRotation().y - 0.01)
+			{
+				myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, comp.turningSpeed * -1.f, 0.f });
+				myEntity.GetPhysicsActor()->SetLinearVelocity({ 0.f });
+			}
+			else if (rotTo.y + myEntity.GetRotation().y > myEntity.GetRotation().y + 0.01)
+			{
+				myEntity.GetPhysicsActor()->SetAngularVelocity({ 0.f, comp.turningSpeed, 0.f });
+				myEntity.GetPhysicsActor()->SetLinearVelocity({ 0.f });
+			}
+
+			const float timeSinceShot = std::any_cast<float>(state.blackboard.at("TimeSinceShot"));
+			if (timeSinceShot > 1.f / comp.fireRate)
+			{
+				ShootBullet(direction, 200000.f + comp.speed);
+				state.blackboard["TimeSinceShot"] = 0.f;
+			}
+			else
+			{
+				state.blackboard["TimeSinceShot"] = timeSinceShot + aDeltaTime;
+			}
+
+
+			if (myAttackedTimer > 0)
+			{
+				myAttackedTimer -= aDeltaTime;
+			}
+			else
+			{
+				myAttackedTimer = 0;
+				const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
+				myEntity.GetComponent<AIU5StateActorComponent>().Attacked = false;
+			}
 		};
 
 		state.transitions.emplace_back([&]()
 			{
-				if (!IsHurt())
+				const auto& comp = myEntity.GetComponent<AIU5StateActorComponent>();
+
+				if (!comp.Attacked)
 				{
 					return 0;
 				}
-
-				return -1;
-			});
-
-		state.transitions.emplace_back([&]()
-			{
 
 				return -1;
 			});
@@ -468,7 +573,14 @@ const gem::vec3 StateMachineActor::FindClosestHealthWell()
 
 			const bool isAvailiable = ent.GetScript<HealthWellScript>("HealthWellScript")->GetPlayer() == Volt::Entity{} || ent.GetScript<HealthWellScript>("HealthWellScript")->GetPlayer() == myEntity;
 
-			if (distance < closestWellDist && isAvailiable)
+			Volt::RaycastHit forwardHit;
+			const bool isBocked = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), gem::normalize(ent.GetPosition() - myEntity.GetPosition()), gem::distance(ent.GetPosition(), myEntity.GetPosition()), &forwardHit, { 0 });
+			if (!isAvailiable && !isBocked)
+			{
+				closestWell = ent;
+				closestWellDist = distance;
+			}
+			else if (distance < closestWellDist && isAvailiable)
 			{
 				closestWell = ent;
 				closestWellDist = distance;

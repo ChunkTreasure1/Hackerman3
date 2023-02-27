@@ -68,7 +68,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Position
-          data: [-4300.25293, 118.253723, 1047.75928]
+          data: [-2577.375, 118.253723, 1516.16064]
         - type: 10
           vectorType: 13
           name: Rotation
@@ -76,7 +76,7 @@ Entity:
         - type: 10
           vectorType: 13
           name: Scale
-          data: [0.999914825, 1, 0.999914825]
+          data: [0.999893725, 1, 0.999893725]
         - type: 0
           vectorType: 13
           name: "Visible "
@@ -146,6 +146,14 @@ Entity:
           vectorType: 13
           name: Fire Rate
           data: 0.5
+        - type: 7
+          vectorType: 13
+          name: Dodge Cool Down
+          data: 5
+        - type: 0
+          vectorType: 13
+          name: Is Being Attacked
+          data: false
         - type: 7
           vectorType: 13
           name: Shoot Distance

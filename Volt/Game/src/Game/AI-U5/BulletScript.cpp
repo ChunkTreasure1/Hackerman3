@@ -1,5 +1,6 @@
 #include "BulletScript.h"
 #include "PollingStationU5.h"
+#include "StateMachineActor.h"
 
 #include <Volt/Log/Log.h>
 
@@ -23,6 +24,11 @@ void BulletScript::OnCollisionEnter(Volt::Entity entity)
 		auto& health = entity.GetComponent<AIU5HealthComponent>().currentHealth;
 		health -= damage;
 		VT_CORE_INFO("Health {0}", health);
+
+		if (entity.HasComponent<AIU5StateActorComponent>())
+		{
+			entity.GetComponent<AIU5StateActorComponent>().Attacked = true;
+		}
 	}
 
 	myEntity.GetScene()->RemoveEntity(myEntity);

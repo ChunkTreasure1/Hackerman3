@@ -13,7 +13,9 @@ SERIALIZE_COMPONENT((struct AIU5StateActorComponent
 	PROPERTY(Name = Turning Speed) float turningSpeed = 10.f;
 
 	PROPERTY(Name = Fire Rate) float fireRate = 0.5f;
-	PROPERTY(Name = Shoot Distance) float shootDistance = 2000.f;
+	PROPERTY(Name = Dodge Cool Down) float coolDown = 5.f;
+	PROPERTY(Name = Is Being Attacked) bool Attacked = false;
+	PROPERTY(Name = Shoot Distance) float shootDistance = 10000.f;
 
 	CREATE_COMPONENT_GUID("{2E18C468-0ADA-4A88-B0AB-2B93ECCD177D}"_guid);
 }), AIU5StateActorComponent);
@@ -34,10 +36,12 @@ public:
 	void OnTriggerEnter(Volt::Entity entity, bool isTrigger)override ;
 	void OnTriggerExit( Volt::Entity entity, bool isTrigger) override;
 
+	void SetIsOnHealthWell(bool avalue) { myIsOnHealthWell = avalue; };
+
 	static Ref<ScriptBase> Create(Volt::Entity aEntity) { return CreateRef<StateMachineActor>(aEntity); }
 	static WireGUID GetStaticGUID() { return "{5E3DCF3E-690E-4CB7-806B-231BCC1270E0}"_guid; };
 	WireGUID GetGUID() override { return GetStaticGUID(); }
-	void SetIsOnHealthWell(bool avalue) { myIsOnHealthWell = avalue; };
+
 private:
 	void ShootBullet(const gem::vec3& direction, const float speed);
 	void SetVelocity(const gem::vec3& direction);
@@ -45,6 +49,9 @@ private:
 	bool myIsOnHealthWell = false;
 	bool myIsDead = false;
 	bool myHitWall = false;
+	bool myTurnLeft = false;
+
+	float myAttackedTimer = 0.f;
 	float myDeathTimer = 5.f;
 
 	gem::vec3 myStartPos = 0.f;
