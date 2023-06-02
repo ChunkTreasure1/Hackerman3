@@ -10,7 +10,7 @@
 
 void GameLayer::OnAttach()
 {
-	myScene = Volt::AssetManager::GetAsset<Volt::Scene>("Assets/Levels/AIU4Level/AIU4Level.vtscene");
+	myScene = Volt::AssetManager::GetAsset<Volt::Scene>("Assets/Levels/U5Level/U5Level.vtscene");
 	mySceneRenderer = CreateRef<Volt::SceneRenderer>(myScene);
 }
 

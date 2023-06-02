@@ -17,7 +17,7 @@ void BulletScript::OnAwake()
 
 void BulletScript::OnCollisionEnter(Volt::Entity entity)
 {
-	constexpr float damage = 10.f;
+	constexpr float damage = 20.f;
 
 	if (entity.HasComponent<AIU5HealthComponent>())
 	{

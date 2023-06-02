@@ -526,7 +526,7 @@ void StateMachineActor::OnUpdate(float aDeltaTime)
 			myEntity.GetPhysicsActor()->SetLinearVelocity(0.f);
 
 			myEntity.SetPosition(PollingStationU5::Get().PollStateRespawnPosition());
-			myEntity.SetRotation(myStartRot);
+			myEntity.SetRotation(myStartRot * gem::quat{ gem::vec3{ 0.f, gem::radians(10.f), 0.f } });
 			myDeathTimer = 5.f;
 			myIsDead = false;
 
@@ -575,7 +575,7 @@ const gem::vec3 StateMachineActor::FindClosestHealthWell()
 
 			Volt::RaycastHit forwardHit;
 			const bool isBocked = Volt::Physics::GetScene()->Raycast(myEntity.GetPosition(), gem::normalize(ent.GetPosition() - myEntity.GetPosition()), gem::distance(ent.GetPosition(), myEntity.GetPosition()), &forwardHit, { 0 });
-			if (!isAvailiable && !isBocked)
+			if (isAvailiable && !isBocked)
 			{
 				closestWell = ent;
 				closestWellDist = distance;
