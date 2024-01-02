@@ -18,7 +18,7 @@ Entity:
         - type: 7
           vectorType: 13
           name: Whisker Angle
-          data: 59
+          data: 50
         - type: 7
           vectorType: 13
           name: Turning Speed
@@ -149,7 +149,7 @@ Entity:
           vectorType: 23
           name: Scripts
           data:
-            - value: [5237494521217666614, 17080649606472804741]
+            - value: [5602304419112872473, 511790641781964701]
     - guid: [5643278339155665755, 5065944822186435496]
       properties:
         - type: 7

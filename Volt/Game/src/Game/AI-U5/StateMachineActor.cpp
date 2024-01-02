@@ -3,6 +3,7 @@
 #include "PollingStationU5.h"
 #include "DecisionTreeActor.h"
 #include "HealthWellScript.h"
+#include "../AI-U6/AIBehaviourTreeScript.h"
 
 #include <Volt/Components/Components.h>
 #include <Volt/Components//PhysicsComponents.h>
@@ -100,7 +101,7 @@ void StateMachineActor::OnStart()
 				if (Volt::Physics::GetScene()->Raycast(origin, direction, 10000.f, &hit, { 0, 2 }))
 				{
 					Volt::Entity hitEntity = { hit.hitEntity, myEntity.GetScene() };
-					if (hitEntity.HasComponent<AIU5DecisionActorComponent>() && !hitEntity.GetScript<DecisionTreeActor>("DecisionTreeActor")->IsDead())
+					if (hitEntity.HasComponent<AIU5DecisionActorComponent>() && hitEntity.GetScript<AIBehaviourTreeScript>("AIBehaviourTreeScript")->GetHealth() > 0)
 					{
 						return 1;
 					}
@@ -192,7 +193,7 @@ void StateMachineActor::OnStart()
 				if (Volt::Physics::GetScene()->Raycast(origin, direction, 10000.f, &hit, { 0, 2 }))
 				{
 					Volt::Entity hitEntity = { hit.hitEntity, myEntity.GetScene() };
-					if (!hitEntity.HasComponent<AIU5DecisionActorComponent>() || hitEntity.GetScript<DecisionTreeActor>("DecisionTreeActor")->IsDead())
+					if (!hitEntity.HasComponent<AIU5DecisionActorComponent>() || hitEntity.GetScript<AIBehaviourTreeScript>("AIBehaviourTreeScript")->GetHealth() <= 0)
 					{
 						return 0;
 					}
@@ -369,7 +370,7 @@ void StateMachineActor::OnStart()
 				if (Volt::Physics::GetScene()->Raycast(origin, direction, 10000.f, &hit))
 				{
 					Volt::Entity hitEntity = { hit.hitEntity, myEntity.GetScene() };
-					if (hitEntity.HasComponent<AIU5DecisionActorComponent>() && !hitEntity.GetScript<DecisionTreeActor>("DecisionTreeActor")->IsDead())
+					if (hitEntity.HasComponent<AIU5DecisionActorComponent>() && !hitEntity.GetScript<AIBehaviourTreeScript>("AIBehaviourTreeScript")->IsDead())
 					{
 						return 1;
 					}
